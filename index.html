@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DrHead · Персональный AI-дашборд</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #0b1120;
+  --surface:   #111827;
+  --card:      #1a2540;
+  --border:    rgba(255,255,255,0.07);
+  --blue:      #3b82f6;
+  --blue-glow: rgba(59,130,246,0.15);
+  --green:     #10b981;
+  --amber:     #f59e0b;
+  --purple:    #8b5cf6;
+  --text:      #f1f5f9;
+  --muted:     #64748b;
+  --subtle:    #94a3b8;
+  --radius:    14px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+/* ── HERO ── */
+.hero {
+  padding: 72px 0 56px;
+  border-bottom: 1px solid var(--border);
+}
+.hero-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: var(--blue-glow);
+  border: 1px solid rgba(59,130,246,0.25);
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+}
+.hero h1 {
+  font-size: clamp(28px, 4.5vw, 42px);
+  font-weight: 800;
+  line-height: 1.18;
+  margin-bottom: 20px;
+  letter-spacing: -.02em;
+}
+.hero h1 span { color: var(--blue); }
+.hero p {
+  font-size: 17px;
+  color: var(--subtle);
+  max-width: 580px;
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+.hero-meta {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.hero-meta-item .val {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--amber);
+}
+.hero-meta-item .lbl {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+/* ── SECTIONS ── */
+section {
+  padding: 52px 0;
+  border-bottom: 1px solid var(--border);
+}
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.section-title {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 28px;
+  letter-spacing: -.01em;
+}
+
+/* ── SITUATION ── */
+.pain-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.pain-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.pain-icon {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.pain-item h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.pain-item p {
+  font-size: 13px;
+  color: var(--subtle);
+  line-height: 1.55;
+}
+
+/* ── PHASES ── */
+.phases { display: flex; flex-direction: column; gap: 16px; }
+
+.phase-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: border-color .2s;
+}
+.phase-card.priority { border-left: 3px solid var(--blue); }
+.phase-card.parallel { border-left: 3px solid var(--green); }
+.phase-card.advanced { border-left: 3px solid var(--purple); }
+
+.phase-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
+  gap: 16px;
+}
+.phase-left { flex: 1; }
+.phase-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.phase-name {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+}
+
+.phase-price-block {
+  text-align: right;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+.phase-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+.badge-blue   { background: rgba(59,130,246,.15); color: #60a5fa; border: 1px solid rgba(59,130,246,.25); }
+.badge-green  { background: rgba(16,185,129,.12); color: #34d399; border: 1px solid rgba(16,185,129,.25); }
+.badge-purple { background: rgba(139,92,246,.12); color: #a78bfa; border: 1px solid rgba(139,92,246,.25); }
+
+.phase-price {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--amber);
+  letter-spacing: -.02em;
+}
+.phase-timeline {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.phase-deliverables {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 20px;
+  list-style: none;
+  margin-bottom: 16px;
+}
+.phase-deliverables li {
+  font-size: 13.5px;
+  color: var(--subtle);
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.5;
+}
+.phase-deliverables li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.phase-note {
+  background: rgba(59,130,246,.04);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--subtle);
+  line-height: 1.55;
+}
+.phase-note strong { color: var(--text); }
+
+/* ── SCOPE TOTALS ── */
+.scope-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 24px;
+}
+.scope-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.scope-card.featured {
+  border-color: rgba(59,130,246,.3);
+  background: rgba(59,130,246,.06);
+}
+.scope-label { font-size: 13px; color: var(--muted); font-weight: 600; }
+.scope-value {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--amber);
+  letter-spacing: -.02em;
+}
+
+/* ── CASES ── */
+.cases-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.case-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+}
+.case-icon {
+  width: 38px; height: 38px;
+  background: var(--blue-glow);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.case-desc { font-size: 13.5px; color: var(--subtle); line-height: 1.5; }
+.case-desc strong { color: var(--text); font-size: 14px; display: block; margin-bottom: 3px; }
+.case-result {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--green);
+  text-align: right;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── SUPPORT ── */
+.support-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.support-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.support-item .s-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.support-item .s-price {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--amber);
+  margin-bottom: 8px;
+}
+.support-item ul {
+  list-style: none;
+}
+.support-item ul li {
+  font-size: 12.5px;
+  color: var(--subtle);
+  padding: 3px 0;
+  border-bottom: 1px solid var(--border);
+}
+.support-item ul li:last-child { border-bottom: none; }
+
+/* ── TEAM ── */
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.team-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+.team-name {
+  font-size: 17px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.team-role {
+  font-size: 12px;
+  color: var(--blue);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 12px;
+}
+.team-card p {
+  font-size: 13px;
+  color: var(--subtle);
+  line-height: 1.6;
+}
+.team-stats {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  letter-spacing: .04em;
+}
+
+/* ── CTA ── */
+.cta-section {
+  padding: 52px 0 64px;
+}
+.cta-box {
+  background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(139,92,246,.08));
+  border: 1px solid rgba(59,130,246,.25);
+  border-radius: 20px;
+  padding: 44px 40px;
+  text-align: center;
+}
+.cta-box h2 {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: -.01em;
+}
+.cta-box p {
+  font-size: 15px;
+  color: var(--subtle);
+  max-width: 480px;
+  margin: 0 auto 28px;
+  line-height: 1.65;
+}
+.cta-btn {
+  display: inline-block;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 30px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: .02em;
+  box-shadow: 0 4px 20px rgba(59,130,246,.35);
+}
+.cta-contact {
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.cta-contact a { color: var(--blue); text-decoration: none; }
+
+/* ── PRINT ── */
+@media print {
+  @page { margin: 18mm 16mm; size: A4; }
+  body { background: #fff !important; color: #111 !important; }
+  .no-print { display: none !important; }
+  .cta-section { display: none !important; }
+  .calc-inputs { display: none !important; }
+  section { padding: 18pt 0 !important; }
+  .hero { padding: 24pt 0 18pt !important; }
+  .hero h1, .section-title { color: #111 !important; }
+  .hero p, .phase-deliverables li, .pain-item p,
+  .case-desc, .support-item ul li, .team-card p { color: #444 !important; }
+  .phase-price, .scope-value, .support-item .s-price,
+  .hero-meta-item .val { color: #d97706 !important; }
+  .phase-card, .pain-item, .case-item, .support-item,
+  .team-card, .scope-card { background: #f8fafc !important; border-color: #e2e8f0 !important; break-inside: avoid; page-break-inside: avoid; }
+  .phase-note { background: #f0f4ff !important; border-left-color: #3b82f6 !important; break-inside: avoid; }
+  .section-label { color: #94a3b8 !important; }
+  .phase-num, .team-role { color: #3b82f6 !important; }
+  .muted, .subtle { color: #64748b !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-label">DrHead · Персональная автоматизация</div>
+    <h1>Вы видите <span>весь бизнес</span> —<br>в одном экране, в реальном времени</h1>
+    <p>Дашборд, который собирает данные из всех ваших систем, убирает рутину из ежедневной повестки и даёт AI-сигналы — до того, как проблема стала проблемой.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="val">3 фазы</span>
+        <span class="lbl">Phased rollout</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="val">9–11 нед</span>
+        <span class="lbl">До запуска</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="val">€14,500</span>
+        <span class="lbl">Full scope</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SITUATION -->
+<section>
+  <div class="container">
+    <div class="section-label">Что мы видим</div>
+    <div class="section-title">Как это выглядит сейчас</div>
+    <div class="pain-grid">
+      <div class="pain-item">
+        <div class="pain-icon">🗂️</div>
+        <h3>Данные в 5+ системах</h3>
+        <p>CRM, таблицы, мессенджеры, аналитика — чтобы понять состояние бизнеса, нужен час ручной работы каждое утро.</p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">⏱️</div>
+        <h3>Решения на вчерашних цифрах</h3>
+        <p>Отчёты приходят раз в неделю. К моменту реакции — воронка просела, расходы выросли, момент упущен.</p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🔄</div>
+        <h3>Вы — операционный менеджер</h3>
+        <p>Статусы, согласования, повторяющиеся вопросы от команды — всё это ложится на вас вместо стратегических задач.</p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🔕</div>
+        <h3>Нет алертов — нет реакции</h3>
+        <p>О проблемах узнаёте постфактум. Нет системы, которая скажет "вот здесь что-то пошло не так" раньше вас.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASES -->
+<section>
+  <div class="container">
+    <div class="section-label">Phased Implementation</div>
+    <div class="section-title">Что и в каком порядке</div>
+    <div class="phases">
+
+      <!-- PHASE 1 -->
+      <div class="phase-card priority">
+        <div class="phase-top">
+          <div class="phase-left">
+            <div class="phase-num">Phase 1 · Priority</div>
+            <div class="phase-name">Аудит процессов и архитектура</div>
+          </div>
+          <div class="phase-price-block">
+            <span class="phase-badge badge-blue">Start here</span>
+            <div class="phase-price">€2,500</div>
+            <div class="phase-timeline">2 недели</div>
+          </div>
+        </div>
+        <ul class="phase-deliverables">
+          <li>Карта всех текущих процессов</li>
+          <li>Список источников данных и API</li>
+          <li>Структура дашборда под ваш ритм</li>
+          <li>Приоритизация метрик (что важно, что — нет)</li>
+          <li>Техническое задание на интеграции</li>
+          <li>Plan с конкретными датами по фазам 2–3</li>
+        </ul>
+        <div class="phase-note">
+          <strong>Что меняется для вас:</strong> у вас появляется чёткое понимание, какие данные реально нужны и в каком виде — до того, как написана первая строчка кода.
+        </div>
+      </div>
+
+      <!-- PHASE 2 -->
+      <div class="phase-card parallel">
+        <div class="phase-top">
+          <div class="phase-left">
+            <div class="phase-num">Phase 2 · Core</div>
+            <div class="phase-name">Дашборд и интеграции</div>
+          </div>
+          <div class="phase-price-block">
+            <span class="phase-badge badge-green">Main build</span>
+            <div class="phase-price">€7,000</div>
+            <div class="phase-timeline">4–5 недель</div>
+          </div>
+        </div>
+        <ul class="phase-deliverables">
+          <li>Единый дашборд с вашими KPI</li>
+          <li>Подключение CRM, аналитики, финансов</li>
+          <li>Автообновление данных в реальном времени</li>
+          <li>Мобильная версия (телефон/планшет)</li>
+          <li>Ролевой доступ для команды</li>
+          <li>Экспорт отчётов по расписанию</li>
+        </ul>
+        <div class="phase-note">
+          <strong>Что меняется для вас:</strong> утреннее погружение в статус бизнеса — 5 минут вместо часа. Вся картина в одном месте, всегда актуальная.
+        </div>
+      </div>
+
+      <!-- PHASE 3 -->
+      <div class="phase-card advanced">
+        <div class="phase-top">
+          <div class="phase-left">
+            <div class="phase-num">Phase 3 · Advanced</div>
+            <div class="phase-name">AI-агенты и автоматизация</div>
+          </div>
+          <div class="phase-price-block">
+            <span class="phase-badge badge-purple">AI layer</span>
+            <div class="phase-price">€5,000</div>
+            <div class="phase-timeline">3 недели</div>
+          </div>
+        </div>
+        <ul class="phase-deliverables">
+          <li>AI-алерты при отклонениях от нормы</li>
+          <li>Автоматические еженедельные брифинги</li>
+          <li>AI-ответы на типовые вопросы команды</li>
+          <li>Автоматизация повторяющихся задач CEO</li>
+          <li>Умные напоминания по приоритетам</li>
+          <li>Чат с дашбордом ("что упало на этой неделе?")</li>
+        </ul>
+        <div class="phase-note">
+          <strong>Что меняется для вас:</strong> вы перестаёте быть диспетчером. Рутина уходит к агентам — вы получаете сигналы только тогда, когда нужно ваше решение.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SCOPE TOTALS -->
+    <div class="scope-grid">
+      <div class="scope-card">
+        <div>
+          <div class="scope-label">Priority Scope</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">Фазы 1–2</div>
+        </div>
+        <div class="scope-value">€9,500</div>
+      </div>
+      <div class="scope-card featured">
+        <div>
+          <div class="scope-label">Full Scope</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">Фазы 1–2–3</div>
+        </div>
+        <div class="scope-value">€14,500</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section>
+  <div class="container">
+    <div class="section-label">Похожие проекты</div>
+    <div class="section-title">Что получилось в аналогичных задачах</div>
+    <div class="cases-grid">
+      <div class="case-item">
+        <div class="case-icon">📊</div>
+        <div class="case-desc">
+          <strong>AI-аналитика рекламы — дашборд из 4 каналов</strong>
+          Единый дашборд + AI-рекомендации по перераспределению бюджета без участия агентства.
+        </div>
+        <div class="case-result">Без доп. агентства</div>
+      </div>
+      <div class="case-item">
+        <div class="case-icon">🔗</div>
+        <div class="case-desc">
+          <strong>API-бридж для недвижимости → CRM</strong>
+          Данные из внешних источников попадают в CRM 24/7 без ручного переноса.
+        </div>
+        <div class="case-result">Данные 24/7</div>
+      </div>
+      <div class="case-item">
+        <div class="case-icon">🦷</div>
+        <div class="case-desc">
+          <strong>Стоматология — 80% автоматизация обращений</strong>
+          Администраторы перестали обрабатывать первичные запросы вручную — освободились для сложных задач.
+        </div>
+        <div class="case-result">80% авто</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section>
+  <div class="container">
+    <div class="section-label">После запуска</div>
+    <div class="section-title">Условия поддержки</div>
+    <div class="support-grid">
+      <div class="support-item">
+        <div class="s-label">Первые 3 месяца</div>
+        <div class="s-price">Included</div>
+        <ul>
+          <li>Мониторинг системы</li>
+          <li>Багфиксы без доп. оплаты</li>
+          <li>Корректировки логики</li>
+          <li>Еженедельный чекин</li>
+        </ul>
+      </div>
+      <div class="support-item">
+        <div class="s-label">Стандарт</div>
+        <div class="s-price">€50/час</div>
+        <ul>
+          <li>Новые интеграции</li>
+          <li>Обновление метрик</li>
+          <li>Обычно 2–4 ч/мес</li>
+          <li>Ответ до 24 ч</li>
+        </ul>
+      </div>
+      <div class="support-item">
+        <div class="s-label">Emergency SLA</div>
+        <div class="s-price">€75/час</div>
+        <ul>
+          <li>Критичные сбои</li>
+          <li>Ответ ≤ 4 часа</li>
+          <li>Приоритетная очередь</li>
+          <li>Всегда доступно</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section>
+  <div class="container">
+    <div class="section-label">Кто делает</div>
+    <div class="section-title">Вы работаете напрямую с нами</div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-name">Danil Usik</div>
+        <div class="team-role">Strategy · CEO</div>
+        <p>Диагностика, архитектура решения, приёмка результата. 10+ лет B2B, 5+ лет AI-автоматизация. Вы всегда работаете со мной напрямую — не с аккаунт-менеджером.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Svetlana Galakhova</div>
+        <div class="team-role">Tech Lead · CTO</div>
+        <p>Техническая архитектура, интеграции, AI-слой. Руководит командой разработчиков — ваш дашборд строят люди с опытом в production AI-системах.</p>
+      </div>
+    </div>
+    <div class="team-stats">
+      AI Hub · Practical AI · 8-person engineering team · 50+ projects delivered
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <h2>Следующий шаг — фиксируем Phase 1</h2>
+      <p>Аудит процессов и архитектура дашборда. Две недели — и у вас полная картина что строить, в каком порядке и с каким результатом.</p>
+      <a href="https://t.me/danilusik" class="cta-btn">→ Запустить Phase 1</a>
+      <div class="cta-contact">
+        Telegram: <a href="https://t.me/danilusik">@danilusik</a> &nbsp;·&nbsp;
+        Email: <a href="mailto:danil@practicalai.es">danil@practicalai.es</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SAVE AS PDF -->
+<div style="position:fixed; bottom:24px; right:24px; z-index:999;" class="no-print">
+  <button onclick="window.print()" style="background:#3b82f6; color:#fff; border:none;
+    padding:10px 20px; border-radius:8px; font-size:13px; font-weight:600;
+    cursor:pointer; font-family:inherit; box-shadow:0 4px 12px rgba(59,130,246,0.4);">
+    ↓ Save as PDF
+  </button>
+</div>
+
+</body>
+</html>
