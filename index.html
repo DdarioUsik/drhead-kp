@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DrHead · Персональный AI-дашборд</title>
+<title>DrHead — Коммерческое предложение</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -21,450 +22,263 @@
   --subtle:    #94a3b8;
   --radius:    14px;
 }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
+.container { max-width: 860px; margin: 0 auto; padding: 0 28px; }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* HERO */
+.hero { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+.hero-eyebrow { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+.hero h1 { font-size: 34px; font-weight: 800; line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.02em; }
+.hero h1 em { font-style: normal; color: var(--blue); }
+.hero-sub { font-size: 16px; color: var(--subtle); max-width: 540px; line-height: 1.65; margin-bottom: 32px; }
+.hero-meta { display: flex; gap: 28px; flex-wrap: wrap; }
+.meta-item { display: flex; flex-direction: column; gap: 3px; }
+.meta-item .lbl { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.meta-item .val { font-size: 14px; font-weight: 600; }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  font-size: 15px;
-}
+/* SECTIONS */
+section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+section:last-of-type { border-bottom: none; }
+.s-label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 22px; }
+.s-title { font-size: 23px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.01em; }
+.s-sub { color: var(--subtle); font-size: 15px; margin-bottom: 26px; max-width: 600px; }
 
-.container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+/* PROBLEM GRID */
+.prob-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.prob-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; }
+.prob-icon { font-size: 18px; margin-bottom: 8px; }
+.prob-card p { font-size: 13.5px; color: var(--subtle); line-height: 1.6; }
+.prob-card p strong { color: var(--text); }
+.quote { background: rgba(255,255,255,0.02); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 14px 18px; margin-top: 20px; font-size: 13.5px; color: var(--subtle); font-style: italic; line-height: 1.6; }
+.quote cite { display: block; margin-top: 6px; font-style: normal; font-size: 12px; color: var(--muted); }
 
-/* ── HERO ── */
-.hero {
-  padding: 72px 0 56px;
-  border-bottom: 1px solid var(--border);
-}
-.hero-label {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--blue);
-  background: var(--blue-glow);
-  border: 1px solid rgba(59,130,246,0.25);
-  padding: 5px 12px;
-  border-radius: 20px;
-  margin-bottom: 28px;
-}
-.hero h1 {
-  font-size: clamp(28px, 4.5vw, 42px);
-  font-weight: 800;
-  line-height: 1.18;
-  margin-bottom: 20px;
-  letter-spacing: -.02em;
-}
-.hero h1 span { color: var(--blue); }
-.hero p {
-  font-size: 17px;
-  color: var(--subtle);
-  max-width: 580px;
-  line-height: 1.65;
-  margin-bottom: 32px;
-}
-.hero-meta {
-  display: flex;
-  gap: 32px;
-  flex-wrap: wrap;
-}
-.hero-meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.hero-meta-item .val {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--amber);
-}
-.hero-meta-item .lbl {
-  font-size: 11px;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: .08em;
-}
+/* PHASE CARDS */
+.phases { display: flex; flex-direction: column; gap: 14px; }
+.phase-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; }
+.phase-card.p1a { border-color: rgba(59,130,246,0.35); }
+.phase-card.p1b { border-color: rgba(16,185,129,0.3); }
+.phase-card.p2  { border-color: rgba(139,92,246,0.3); }
+.phase-card.p3  { border-color: rgba(255,255,255,0.1); }
 
-/* ── SECTIONS ── */
-section {
-  padding: 52px 0;
-  border-bottom: 1px solid var(--border);
-}
-.section-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 6px;
-}
-.section-title {
-  font-size: 24px;
-  font-weight: 800;
-  margin-bottom: 28px;
-  letter-spacing: -.01em;
-}
-
-/* ── SITUATION ── */
-.pain-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-.pain-item {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-}
-.pain-icon {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-.pain-item h3 {
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.pain-item p {
-  font-size: 13px;
-  color: var(--subtle);
-  line-height: 1.55;
-}
-
-/* ── PHASES ── */
-.phases { display: flex; flex-direction: column; gap: 16px; }
-
-.phase-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  transition: border-color .2s;
-}
-.phase-card.priority { border-left: 3px solid var(--blue); }
-.phase-card.parallel { border-left: 3px solid var(--green); }
-.phase-card.advanced { border-left: 3px solid var(--purple); }
-
-.phase-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 18px;
-  gap: 16px;
-}
+.phase-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; gap: 16px; }
 .phase-left { flex: 1; }
-.phase-num {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 4px;
-}
-.phase-name {
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: -.01em;
-}
+.p-num { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
+.p-name { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
+.price-block { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.badge { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding: 3px 10px; border-radius: 20px; }
+.badge-blue   { background: var(--blue-glow); color: var(--blue); border: 1px solid rgba(59,130,246,0.3); }
+.badge-green  { background: rgba(16,185,129,0.12); color: var(--green); border: 1px solid rgba(16,185,129,0.3); }
+.badge-purple { background: rgba(139,92,246,0.12); color: var(--purple); border: 1px solid rgba(139,92,246,0.3); }
+.badge-gray   { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
+.p-price { font-size: 24px; font-weight: 800; color: var(--amber); letter-spacing: -0.02em; }
+.p-price-sub { font-size: 12px; color: var(--muted); }
+.p-time { font-size: 12px; color: var(--muted); }
 
-.phase-price-block {
-  text-align: right;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 5px;
-}
-.phase-badge {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 20px;
-}
-.badge-blue   { background: rgba(59,130,246,.15); color: #60a5fa; border: 1px solid rgba(59,130,246,.25); }
-.badge-green  { background: rgba(16,185,129,.12); color: #34d399; border: 1px solid rgba(16,185,129,.25); }
-.badge-purple { background: rgba(139,92,246,.12); color: #a78bfa; border: 1px solid rgba(139,92,246,.25); }
+.delivs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; list-style: none; margin-bottom: 14px; }
+.delivs li { font-size: 13px; color: var(--subtle); padding-left: 16px; position: relative; }
+.delivs li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size: 12px; }
 
-.phase-price {
-  font-size: 28px;
-  font-weight: 800;
-  color: var(--amber);
-  letter-spacing: -.02em;
-}
-.phase-timeline {
-  font-size: 12px;
-  color: var(--muted);
-}
+.p-note { background: rgba(59,130,246,0.05); border-left: 3px solid var(--blue); border-radius: 0 8px 8px 0; padding: 11px 14px; font-size: 13px; color: var(--subtle); line-height: 1.55; }
+.p1b .p-note { border-left-color: var(--green); background: rgba(16,185,129,0.05); }
+.p2  .p-note { border-left-color: var(--purple); background: rgba(139,92,246,0.05); }
+.p3  .p-note { border-left-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.02); }
+.p-note strong { color: var(--text); }
 
-.phase-deliverables {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px 20px;
-  list-style: none;
-  margin-bottom: 16px;
-}
-.phase-deliverables li {
-  font-size: 13.5px;
-  color: var(--subtle);
-  padding-left: 18px;
-  position: relative;
-  line-height: 1.5;
-}
-.phase-deliverables li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: var(--green);
-  font-weight: 700;
-  font-size: 12px;
-}
+/* CHANNELS */
+.ch-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+.ch-tag { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 20px; padding: 3px 10px; font-size: 12px; font-weight: 600; color: var(--subtle); }
+.ch-tag.arrow { color: var(--blue); border-color: rgba(59,130,246,0.25); background: var(--blue-glow); }
 
-.phase-note {
-  background: rgba(59,130,246,.04);
-  border-left: 3px solid var(--blue);
-  border-radius: 0 8px 8px 0;
-  padding: 12px 16px;
-  font-size: 13px;
-  color: var(--subtle);
-  line-height: 1.55;
-}
-.phase-note strong { color: var(--text); }
+/* DIVIDER */
+.phase-div { text-align: center; font-size: 12px; color: var(--muted); padding: 6px 0; letter-spacing: 0.04em; }
 
-/* ── SCOPE TOTALS ── */
-.scope-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-top: 24px;
-}
-.scope-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px 22px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.scope-card.featured {
-  border-color: rgba(59,130,246,.3);
-  background: rgba(59,130,246,.06);
-}
-.scope-label { font-size: 13px; color: var(--muted); font-weight: 600; }
-.scope-value {
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--amber);
-  letter-spacing: -.02em;
-}
+/* ROADMAP SEPARATOR */
+.roadmap-sep { display: flex; align-items: center; gap: 12px; margin: 28px 0 20px; }
+.roadmap-sep span { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; }
+.roadmap-sep::before, .roadmap-sep::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-/* ── CASES ── */
-.cases-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+/* ACCORDION for cashier idea */
+details { margin-top: 12px; }
+summary {
+  font-size: 13px; color: var(--blue); cursor: pointer; list-style: none;
+  padding: 8px 12px; background: var(--blue-glow); border: 1px solid rgba(59,130,246,0.25);
+  border-radius: 8px; display: flex; align-items: center; gap: 6px; font-weight: 600;
+  user-select: none;
 }
-.case-item {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px 20px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 16px;
-}
-.case-icon {
-  width: 38px; height: 38px;
-  background: var(--blue-glow);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-.case-desc { font-size: 13.5px; color: var(--subtle); line-height: 1.5; }
-.case-desc strong { color: var(--text); font-size: 14px; display: block; margin-bottom: 3px; }
-.case-result {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--green);
-  text-align: right;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
+summary::-webkit-details-marker { display: none; }
+summary::before { content: '▶'; font-size: 10px; transition: transform 0.2s; }
+details[open] summary::before { transform: rotate(90deg); }
+.acc-body { background: rgba(59,130,246,0.04); border: 1px solid rgba(59,130,246,0.15); border-top: none; border-radius: 0 0 8px 8px; padding: 14px 16px; }
+.acc-body p { font-size: 13px; color: var(--subtle); line-height: 1.6; margin-bottom: 10px; }
+.acc-body p:last-child { margin-bottom: 0; }
+.acc-body strong { color: var(--text); }
 
-/* ── SUPPORT ── */
-.support-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-}
-.support-item {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-}
-.support-item .s-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 8px;
-}
-.support-item .s-price {
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--amber);
-  margin-bottom: 8px;
-}
-.support-item ul {
-  list-style: none;
-}
-.support-item ul li {
-  font-size: 12.5px;
-  color: var(--subtle);
-  padding: 3px 0;
-  border-bottom: 1px solid var(--border);
-}
-.support-item ul li:last-child { border-bottom: none; }
+/* SCOPE */
+.scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.scope-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; }
+.scope-card.featured { border-color: rgba(59,130,246,0.4); }
+.sc-lbl { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.sc-total { font-size: 26px; font-weight: 800; color: var(--amber); margin-bottom: 2px; letter-spacing: -0.02em; }
+.sc-mo { font-size: 13px; color: var(--subtle); margin-bottom: 12px; }
+.sc-items { list-style: none; }
+.sc-items li { font-size: 13px; color: var(--subtle); padding: 4px 0; border-bottom: 1px solid var(--border); }
+.sc-items li:last-child { border-bottom: none; }
+.sc-items li span { float: right; color: var(--text); font-weight: 600; }
 
-/* ── TEAM ── */
-.team-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-bottom: 20px;
-}
-.team-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 22px;
-}
-.team-name {
-  font-size: 17px;
-  font-weight: 800;
-  margin-bottom: 4px;
-}
-.team-role {
-  font-size: 12px;
-  color: var(--blue);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  margin-bottom: 12px;
-}
-.team-card p {
-  font-size: 13px;
-  color: var(--subtle);
-  line-height: 1.6;
-}
-.team-stats {
-  text-align: center;
-  font-size: 12px;
-  color: var(--muted);
-  padding: 14px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  letter-spacing: .04em;
-}
+/* SUPPORT */
+.sup-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.sup-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; }
+.sup-title { font-size: 13.5px; font-weight: 700; margin-bottom: 6px; }
+.sup-price { font-size: 20px; font-weight: 800; color: var(--amber); margin-bottom: 8px; }
+.sup-desc { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
 
-/* ── CTA ── */
-.cta-section {
-  padding: 52px 0 64px;
-}
-.cta-box {
-  background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(139,92,246,.08));
-  border: 1px solid rgba(59,130,246,.25);
-  border-radius: 20px;
-  padding: 44px 40px;
-  text-align: center;
-}
-.cta-box h2 {
-  font-size: 26px;
-  font-weight: 800;
-  margin-bottom: 12px;
-  letter-spacing: -.01em;
-}
-.cta-box p {
-  font-size: 15px;
-  color: var(--subtle);
-  max-width: 480px;
-  margin: 0 auto 28px;
-  line-height: 1.65;
-}
-.cta-btn {
-  display: inline-block;
-  background: var(--blue);
-  color: #fff;
-  text-decoration: none;
-  padding: 14px 30px;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: .02em;
-  box-shadow: 0 4px 20px rgba(59,130,246,.35);
-}
-.cta-contact {
-  margin-top: 18px;
-  font-size: 13px;
-  color: var(--muted);
-}
-.cta-contact a { color: var(--blue); text-decoration: none; }
+/* TERMS */
+.terms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.term-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; }
+.term-title { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+.term-list { list-style: none; }
+.term-list li { font-size: 13px; color: var(--subtle); padding: 4px 0; border-bottom: 1px solid var(--border); line-height: 1.5; }
+.term-list li:last-child { border-bottom: none; }
+.term-list li strong { color: var(--text); display: block; font-size: 12px; margin-bottom: 1px; }
 
-/* ── PRINT ── */
+/* KPI CALLOUT */
+.kpi-callout { display: flex; gap: 10px; align-items: flex-start; margin-top: 10px; background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--subtle); line-height: 1.5; }
+.kpi-callout strong { color: var(--green); }
+.kpi-ico { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+/* RHYTHM */
+.rhythm-block { margin-top: 12px; background: rgba(16,185,129,0.04); border: 1px solid rgba(16,185,129,0.15); border-radius: 8px; padding: 14px 16px; }
+.rhythm-title { font-size: 11px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+.rhythm-items { display: flex; flex-direction: column; gap: 8px; }
+.rhythm-item { display: flex; gap: 12px; align-items: flex-start; }
+.rhythm-week { font-size: 12px; font-weight: 700; color: var(--text); white-space: nowrap; min-width: 130px; }
+.rhythm-desc { font-size: 12.5px; color: var(--subtle); line-height: 1.5; }
+.trial-note { display: flex; gap: 10px; align-items: flex-start; margin-top: 10px; background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--subtle); line-height: 1.5; }
+.trial-note strong { color: var(--amber); }
+.trial-ico { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* DEMO MOCKUP */
+.demo-window { display: grid; grid-template-columns: 240px 1fr; background: #0d1526; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; height: 330px; margin-top: 8px; }
+.demo-left { border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
+.demo-search { padding: 9px 13px; font-size: 11.5px; color: var(--muted); border-bottom: 1px solid var(--border); background: var(--surface); }
+.demo-conv { padding: 10px 13px; border-bottom: 1px solid var(--border); }
+.demo-conv.active { background: rgba(59,130,246,0.08); border-left: 2px solid var(--blue); padding-left: 11px; }
+.demo-conv-name { font-size: 12.5px; font-weight: 700; margin-bottom: 2px; }
+.demo-conv-preview { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+.demo-conv-chs { display: flex; gap: 3px; }
+.demo-ch { font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+.demo-ch.tg { background: rgba(41,182,246,0.15); color: #29b6f6; }
+.demo-ch.ig { background: rgba(225,48,108,0.15); color: #e1306c; }
+.demo-ch.wa { background: rgba(37,211,102,0.15); color: #25d366; }
+.demo-ch.jv { background: rgba(255,180,0,0.15); color: #ffb400; }
+.demo-right { display: flex; flex-direction: column; overflow: hidden; }
+.demo-hdr { padding: 9px 14px; border-bottom: 1px solid var(--border); background: var(--surface); display: flex; align-items: center; justify-content: space-between; }
+.demo-client-name { font-size: 13px; font-weight: 700; }
+.demo-msgs { flex: 1; overflow-y: auto; padding: 12px 14px; display: flex; flex-direction: column; gap: 9px; }
+.demo-msg-wrap { display: flex; flex-direction: column; }
+.demo-msg-wrap.r { align-items: flex-end; }
+.demo-msg-meta { font-size: 10px; color: var(--muted); margin-bottom: 3px; display: flex; align-items: center; gap: 5px; }
+.demo-msg { max-width: 76%; padding: 7px 11px; border-radius: 9px; font-size: 12px; line-height: 1.5; }
+.demo-msg.client { background: rgba(255,255,255,0.06); color: var(--subtle); }
+.demo-msg.ai { background: rgba(59,130,246,0.12); color: var(--subtle); border: 1px solid rgba(59,130,246,0.2); }
+.demo-msg.op { background: rgba(16,185,129,0.1); color: var(--subtle); border: 1px solid rgba(16,185,129,0.2); }
+.demo-footer { padding: 9px 13px; border-top: 1px solid var(--border); background: var(--surface); display: flex; gap: 7px; align-items: center; }
+.demo-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 6px; padding: 5px 9px; font-size: 11.5px; color: var(--muted); font-family: inherit; }
+.demo-send-btn { background: var(--blue); color: #fff; border: none; padding: 5px 13px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; }
+.demo-legend { margin-top: 12px; display: flex; gap: 18px; flex-wrap: wrap; }
+.demo-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.demo-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* CTA */
+.cta-section { text-align: center; padding: 52px 0 60px; }
+.cta-section h2 { font-size: 24px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.01em; }
+.cta-section p { color: var(--subtle); font-size: 15px; max-width: 460px; margin: 0 auto 24px; }
+.cta-btn { display: inline-block; background: var(--blue); color: #fff; font-weight: 700; font-size: 14px; padding: 13px 28px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 16px rgba(59,130,246,0.35); }
+.cta-sub { margin-top: 16px; font-size: 13px; color: var(--muted); }
+.cta-sub a { color: var(--blue); text-decoration: none; }
+
+/* VOICE ADDON */
+.addon-card { margin-top: 16px; background: rgba(245,158,11,0.04); border: 1px dashed rgba(245,158,11,0.3); border-radius: var(--radius); padding: 20px 22px; }
+.addon-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
+.addon-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding: 3px 10px; border-radius: 20px; background: rgba(245,158,11,0.12); color: var(--amber); border: 1px solid rgba(245,158,11,0.3); display: inline-block; margin-bottom: 4px; }
+.addon-title { font-size: 16px; font-weight: 800; letter-spacing: -0.01em; }
+.addon-desc { font-size: 13px; color: var(--subtle); line-height: 1.6; margin-bottom: 12px; }
+.addon-note { background: rgba(245,158,11,0.06); border-left: 3px solid var(--amber); border-radius: 0 8px 8px 0; padding: 10px 13px; font-size: 13px; color: var(--subtle); line-height: 1.5; }
+.addon-note strong { color: var(--amber); }
+
+/* PRINT */
 @media print {
-  @page { margin: 18mm 16mm; size: A4; }
-  body { background: #fff !important; color: #111 !important; }
-  .no-print { display: none !important; }
-  .cta-section { display: none !important; }
-  .calc-inputs { display: none !important; }
-  section { padding: 18pt 0 !important; }
-  .hero { padding: 24pt 0 18pt !important; }
-  .hero h1, .section-title { color: #111 !important; }
-  .hero p, .phase-deliverables li, .pain-item p,
-  .case-desc, .support-item ul li, .team-card p { color: #444 !important; }
-  .phase-price, .scope-value, .support-item .s-price,
-  .hero-meta-item .val { color: #d97706 !important; }
-  .phase-card, .pain-item, .case-item, .support-item,
-  .team-card, .scope-card { background: #f8fafc !important; border-color: #e2e8f0 !important; break-inside: avoid; page-break-inside: avoid; }
-  .phase-note { background: #f0f4ff !important; border-left-color: #3b82f6 !important; break-inside: avoid; }
-  .section-label { color: #94a3b8 !important; }
-  .phase-num, .team-role { color: #3b82f6 !important; }
-  .muted, .subtle { color: #64748b !important; }
+  @page { margin: 16mm 14mm; size: A4; }
+  body { background: #fff; color: #111; font-size: 12.5px; }
+  .hero { padding: 20pt 0 14pt; }
+  .hero h1 { color: #111; font-size: 24pt; }
+  .hero h1 em { color: #1d4ed8; }
+  .hero-sub, .s-sub { color: #444; }
+  .hero-eyebrow, .s-label, .meta-item .lbl { color: #888; }
+  section { padding: 14pt 0; border-bottom: 1px solid #e5e7eb; }
+  .phase-card, .scope-card, .sup-card, .term-card, .prob-card { background: #f9fafb !important; border-color: #e5e7eb !important; page-break-inside: avoid; break-inside: avoid; }
+  .phase-card.p1a { border-color: #bfdbfe !important; }
+  .phase-card.p1b { border-color: #a7f3d0 !important; }
+  .phase-card.p2  { border-color: #ddd6fe !important; }
+  .p-price, .sc-total, .sup-price { color: #d97706 !important; }
+  .p-note { background: #eff6ff !important; border-left-color: #3b82f6 !important; color: #374151; }
+  .p1b .p-note { background: #ecfdf5 !important; border-left-color: #10b981 !important; }
+  .p2  .p-note { background: #f5f3ff !important; border-left-color: #8b5cf6 !important; }
+  .delivs li { color: #444; }
+  .delivs li::before { color: #059669; }
+  .badge-blue   { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+  .badge-green  { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
+  .badge-purple { background: #f5f3ff; color: #5b21b6; border-color: #ddd6fe; }
+  .badge-gray   { background: #f3f4f6; color: #6b7280; border-color: #e5e7eb; }
+  .ch-tag { background: #f3f4f6; color: #374151; border-color: #e5e7eb; }
+  .ch-tag.arrow { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+  .p-name, .sup-title, .term-title { color: #111; }
+  .p-num, .p-time, .p-price-sub, .sup-desc, .sc-mo { color: #666; }
+  .sc-items li { color: #444; border-bottom-color: #e5e7eb; }
+  .sc-items li span { color: #111; }
+  .quote { background: #f9fafb; color: #374151; border-left-color: #3b82f6; }
+  .quote cite { color: #888; }
+  details { display: none; }
+  .demo-window, .demo-legend { display: none; }
+  .kpi-callout { background: #f0fdf4 !important; border-color: #a7f3d0 !important; color: #374151; break-inside: avoid; page-break-inside: avoid; }
+  .kpi-callout strong { color: #065f46 !important; }
+  .rhythm-block { background: #f0fdf4 !important; border-color: #a7f3d0 !important; break-inside: avoid; page-break-inside: avoid; }
+  .rhythm-title { color: #065f46 !important; }
+  .rhythm-desc { color: #374151; }
+  .trial-note { background: #fffbeb !important; border-color: #fde68a !important; color: #374151; break-inside: avoid; page-break-inside: avoid; }
+  .trial-note strong { color: #92400e !important; }
+  .addon-card { background: #fffbeb !important; border-color: #fde68a !important; break-inside: avoid; page-break-inside: avoid; }
+  .addon-badge { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+  .addon-desc, .addon-note { color: #374151; }
+  .addon-note { background: #fffbeb !important; border-left-color: #d97706 !important; }
+  .addon-note strong { color: #92400e !important; }
+  .roadmap-sep span { color: #888; }
+  .term-list li { color: #444; border-bottom-color: #e5e7eb; }
+  .term-list li strong { color: #111; }
+  .cta-section, .no-print { display: none !important; }
 }
 </style>
 </head>
 <body>
 
+<div style="position:fixed; bottom:24px; right:24px; z-index:999;" class="no-print">
+  <button onclick="window.print()" style="background:#3b82f6; color:#fff; border:none; padding:10px 20px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; font-family:inherit; box-shadow:0 4px 12px rgba(59,130,246,0.4);">↓ Save as PDF</button>
+</div>
+
 <!-- HERO -->
 <div class="hero">
   <div class="container">
-    <div class="hero-label">DrHead · Персональная автоматизация</div>
-    <h1>Вы видите <span>весь бизнес</span> —<br>в одном экране, в реальном времени</h1>
-    <p>Дашборд, который собирает данные из всех ваших систем, убирает рутину из ежедневной повестки и даёт AI-сигналы — до того, как проблема стала проблемой.</p>
+    <div class="hero-eyebrow">Коммерческое предложение</div>
+    <h1>Из хаоса в чатах —<br>в <em>систему, которая масштабируется</em></h1>
+    <p class="hero-sub">
+      Единый центр обращений + технический партнёр, который держит проект.
+      Первый результат — через 3–4 недели.
+    </p>
     <div class="hero-meta">
-      <div class="hero-meta-item">
-        <span class="val">3 фазы</span>
-        <span class="lbl">Phased rollout</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="val">9–11 нед</span>
-        <span class="lbl">До запуска</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="val">€14,500</span>
-        <span class="lbl">Full scope</span>
-      </div>
+      <div class="meta-item"><span class="lbl">Клиент</span><span class="val">DrHead · аудиотехника, ритейл</span></div>
+      <div class="meta-item"><span class="lbl">Рынки</span><span class="val">Россия · Дубай</span></div>
+      <div class="meta-item"><span class="lbl">Дата</span><span class="val">Март 2026</span></div>
     </div>
   </div>
 </div>
@@ -472,170 +286,269 @@ section {
 <!-- SITUATION -->
 <section>
   <div class="container">
-    <div class="section-label">Что мы видим</div>
-    <div class="section-title">Как это выглядит сейчас</div>
-    <div class="pain-grid">
-      <div class="pain-item">
-        <div class="pain-icon">🗂️</div>
-        <h3>Данные в 5+ системах</h3>
-        <p>CRM, таблицы, мессенджеры, аналитика — чтобы понять состояние бизнеса, нужен час ручной работы каждое утро.</p>
+    <div class="s-label">Три встречи. Три проблемы.</div>
+    <h2 class="s-title">Вот что мы увидели</h2>
+    <p class="s-sub">Всё нижеперечисленное — слова команды DrHead из анкет и разговоров, не наши домыслы.</p>
+
+    <div class="prob-grid">
+      <div class="prob-card">
+        <div class="prob-icon">💬</div>
+        <p><strong>Каналы не связаны.</strong> Клиент пишет в Telegram — нет ответа. Звонит. Потом пишет в Instagram. Три точки контакта, контекст между ними потерян.</p>
       </div>
-      <div class="pain-item">
-        <div class="pain-icon">⏱️</div>
-        <h3>Решения на вчерашних цифрах</h3>
-        <p>Отчёты приходят раз в неделю. К моменту реакции — воронка просела, расходы выросли, момент упущен.</p>
+      <div class="prob-card">
+        <div class="prob-icon">🔁</div>
+        <p><strong>CRM не взлетала три раза.</strong> Причина одна: уходил ответственный человек — и проект рассыпался. Не проблема системы. Проблема владельца процесса.</p>
       </div>
-      <div class="pain-item">
-        <div class="pain-icon">🔄</div>
-        <h3>Вы — операционный менеджер</h3>
-        <p>Статусы, согласования, повторяющиеся вопросы от команды — всё это ложится на вас вместо стратегических задач.</p>
+      <div class="prob-card">
+        <div class="prob-icon">👤</div>
+        <p><strong>425 тыс. клиентов, 90% анонимные.</strong> Повторные продажи работают только на 10% базы — не потому что нет желания, а потому что нет данных.</p>
       </div>
-      <div class="pain-item">
-        <div class="pain-icon">🔕</div>
-        <h3>Нет алертов — нет реакции</h3>
-        <p>О проблемах узнаёте постфактум. Нет системы, которая скажет "вот здесь что-то пошло не так" раньше вас.</p>
+      <div class="prob-card">
+        <div class="prob-icon">📊</div>
+        <p><strong>Данные рассыпаны.</strong> 1С, Excel, GA, Метрика, Манго — картины нет ни у кого. Артём получает отчёт в 23:00, когда уже ничего не изменить.</p>
       </div>
+    </div>
+
+    <div class="quote">
+      «Ребята кое-как задней ногой общаются в чатах. Если выстроить нормальный отдел с ботами — мы могли бы ещё больше.
+      Хочу открыть США, Лондон, Германию — но понимаю, что буду масштабировать хаос.»
+      <cite>— Артём, DrHead</cite>
     </div>
   </div>
 </section>
 
-<!-- PHASES -->
+<!-- PHASE 1 -->
 <section>
   <div class="container">
-    <div class="section-label">Phased Implementation</div>
-    <div class="section-title">Что и в каком порядке</div>
+    <div class="s-label">Этап 1 — Приоритет</div>
+    <h2 class="s-title">MVP: закрытие текущей боли</h2>
+    <p class="s-sub">Быстрый результат — первые изменения видны через 3–4 недели. Два блока запускаются параллельно.</p>
+
     <div class="phases">
 
-      <!-- PHASE 1 -->
-      <div class="phase-card priority">
+      <!-- 1A: Unified Center -->
+      <div class="phase-card p1a">
         <div class="phase-top">
           <div class="phase-left">
-            <div class="phase-num">Phase 1 · Priority</div>
-            <div class="phase-name">Аудит процессов и архитектура</div>
+            <div class="p-num">1А · Запускаем</div>
+            <div class="p-name">Единый центр обращений</div>
           </div>
-          <div class="phase-price-block">
-            <span class="phase-badge badge-blue">Start here</span>
-            <div class="phase-price">€2,500</div>
-            <div class="phase-timeline">2 недели</div>
+          <div class="price-block">
+            <span class="badge badge-blue">Старт</span>
+            <div class="p-price">$3 000</div>
+            <div class="p-price-sub">+ $200 / мес поддержка</div>
+            <div class="p-time">3–4 недели</div>
           </div>
         </div>
-        <ul class="phase-deliverables">
-          <li>Карта всех текущих процессов</li>
-          <li>Список источников данных и API</li>
-          <li>Структура дашборда под ваш ритм</li>
-          <li>Приоритизация метрик (что важно, что — нет)</li>
-          <li>Техническое задание на интеграции</li>
-          <li>Plan с конкретными датами по фазам 2–3</li>
+
+        <div class="ch-tags">
+          <span class="ch-tag">Telegram</span>
+          <span class="ch-tag">WhatsApp</span>
+          <span class="ch-tag">JivoChat</span>
+          <span class="ch-tag">VK</span>
+          <span class="ch-tag">Avito</span>
+          <span class="ch-tag arrow">→ одно окно оператора</span>
+        </div>
+
+        <ul class="delivs">
+          <li>Все каналы в одном интерфейсе</li>
+          <li>AI отвечает на типовые вопросы</li>
+          <li>История клиента по всем каналам</li>
+          <li>Передача на оператора с контекстом</li>
+          <li>База знаний из каталога и сайта</li>
+          <li>Обучение команды (Алексей, Павел)</li>
         </ul>
-        <div class="phase-note">
-          <strong>Что меняется для вас:</strong> у вас появляется чёткое понимание, какие данные реально нужны и в каком виде — до того, как написана первая строчка кода.
+        <div class="p-note">
+          <strong>Что изменится:</strong> ни одно обращение не теряется. Клиент написал в Telegram и в Instagram — оператор видит это как одного человека. Тот же штат обрабатывает больший поток.
+        </div>
+        <div class="kpi-callout">
+          <span class="kpi-ico">📌</span>
+          <div><strong>KPI первого месяца:</strong> бот работает, все каналы собраны в одном окне, ни одно обращение не теряется, конверсия в покупку не падает относительно базовой линии.</div>
         </div>
       </div>
 
-      <!-- PHASE 2 -->
-      <div class="phase-card parallel">
-        <div class="phase-top">
-          <div class="phase-left">
-            <div class="phase-num">Phase 2 · Core</div>
-            <div class="phase-name">Дашборд и интеграции</div>
-          </div>
-          <div class="phase-price-block">
-            <span class="phase-badge badge-green">Main build</span>
-            <div class="phase-price">€7,000</div>
-            <div class="phase-timeline">4–5 недель</div>
-          </div>
-        </div>
-        <ul class="phase-deliverables">
-          <li>Единый дашборд с вашими KPI</li>
-          <li>Подключение CRM, аналитики, финансов</li>
-          <li>Автообновление данных в реальном времени</li>
-          <li>Мобильная версия (телефон/планшет)</li>
-          <li>Ролевой доступ для команды</li>
-          <li>Экспорт отчётов по расписанию</li>
-        </ul>
-        <div class="phase-note">
-          <strong>Что меняется для вас:</strong> утреннее погружение в статус бизнеса — 5 минут вместо часа. Вся картина в одном месте, всегда актуальная.
-        </div>
-      </div>
+      <div class="phase-div">↓ параллельно</div>
 
-      <!-- PHASE 3 -->
-      <div class="phase-card advanced">
+      <!-- 1B: CTO subscription -->
+      <div class="phase-card p1b">
         <div class="phase-top">
           <div class="phase-left">
-            <div class="phase-num">Phase 3 · Advanced</div>
-            <div class="phase-name">AI-агенты и автоматизация</div>
+            <div class="p-num">1Б · Параллельно</div>
+            <div class="p-name">CTO по подписке</div>
           </div>
-          <div class="phase-price-block">
-            <span class="phase-badge badge-purple">AI layer</span>
-            <div class="phase-price">€5,000</div>
-            <div class="phase-timeline">3 недели</div>
+          <div class="price-block">
+            <span class="badge badge-green">Держит проект</span>
+            <div class="p-price">$2 000</div>
+            <div class="p-price-sub">/ месяц</div>
+            <div class="p-time">20 часов в месяц</div>
           </div>
         </div>
-        <ul class="phase-deliverables">
-          <li>AI-алерты при отклонениях от нормы</li>
-          <li>Автоматические еженедельные брифинги</li>
-          <li>AI-ответы на типовые вопросы команды</li>
-          <li>Автоматизация повторяющихся задач CEO</li>
-          <li>Умные напоминания по приоритетам</li>
-          <li>Чат с дашбордом ("что упало на этой неделе?")</li>
+
+        <ul class="delivs">
+          <li>Диагностика с каждым из команды</li>
+          <li>Карта задач и приоритетов</li>
+          <li>Постановка задач разработке</li>
+          <li>Координация всех процессов</li>
+          <li>Еженедельная отчётность</li>
+          <li>Документация и передача знаний</li>
         </ul>
-        <div class="phase-note">
-          <strong>Что меняется для вас:</strong> вы перестаёте быть диспетчером. Рутина уходит к агентам — вы получаете сигналы только тогда, когда нужно ваше решение.
+        <div class="p-note">
+          <strong>Почему это сработает — в отличие от прошлых попыток:</strong>
+          CRM падала не потому что выбирали не ту систему — уходил человек, и проект рассыпался.
+          Мы — контракт, не сотрудник. Когда найдёте своего IT-директора, передадим всё: процессы, архитектуру, документацию.
+        </div>
+        <div class="rhythm-block">
+          <div class="rhythm-title">Ритм работы</div>
+          <div class="rhythm-items">
+            <div class="rhythm-item">
+              <div class="rhythm-week">Недели 1–2</div>
+              <div class="rhythm-desc">Диагностические встречи с каждым из команды — понять реальное состояние процессов изнутри</div>
+            </div>
+            <div class="rhythm-item">
+              <div class="rhythm-week">Каждую пятницу</div>
+              <div class="rhythm-desc">Еженедельный отчёт: что сделано / что узнали / следующие шаги</div>
+            </div>
+            <div class="rhythm-item">
+              <div class="rhythm-week">Итог месяца 1</div>
+              <div class="rhythm-desc">Полная картина процессов, стратегия трансформации на 12 месяцев, координация запуска единого центра обращений</div>
+            </div>
+          </div>
+        </div>
+        <div class="trial-note">
+          <span class="trial-ico">🔑</span>
+          <div><strong>Формат старта — тест-драйв:</strong> подписываем контракт на 1 месяц → собираем картину и даём первый результат → заключаем доп. соглашение на продолжение. Без долгосрочных обязательств с первого дня.</div>
         </div>
       </div>
 
     </div>
 
-    <!-- SCOPE TOTALS -->
-    <div class="scope-grid">
-      <div class="scope-card">
-        <div>
-          <div class="scope-label">Priority Scope</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:3px;">Фазы 1–2</div>
+    <!-- SCOPE SUMMARY PHASE 1 -->
+    <div style="margin-top:20px;">
+      <div class="scope-grid">
+        <div class="scope-card featured">
+          <div class="sc-lbl">Инвестиция — первый месяц</div>
+          <div class="sc-total">$5 200</div>
+          <div class="sc-mo">разово + $2 200 каждый следующий</div>
+          <ul class="sc-items">
+            <li>Единый центр обращений (setup) <span>$3 000</span></li>
+            <li>CTO по подписке <span>$2 000 / мес</span></li>
+            <li>Инфраструктура бота <span>~$200 / мес</span></li>
+          </ul>
         </div>
-        <div class="scope-value">€9,500</div>
-      </div>
-      <div class="scope-card featured">
-        <div>
-          <div class="scope-label">Full Scope</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:3px;">Фазы 1–2–3</div>
+        <div class="scope-card">
+          <div class="sc-lbl">Оплата</div>
+          <div style="font-size:14px; color:var(--subtle); line-height:1.7; margin-top:4px;">
+            <p style="margin-bottom:8px;">50% предоплата для старта<br>50% по факту сдачи центра обращений</p>
+            <p>Подписка CTO выставляется в первый рабочий день каждого месяца</p>
+          </div>
         </div>
-        <div class="scope-value">€14,500</div>
       </div>
     </div>
+
+    <!-- VOICE ADDON -->
+    <div class="addon-card">
+      <div class="addon-top">
+        <div class="phase-left">
+          <span class="addon-badge">Опционально · Надстройка над 1А</span>
+          <div class="addon-title">+ Голосовой модуль</div>
+        </div>
+        <div class="price-block">
+          <div class="p-price">€2 000</div>
+          <div class="p-price-sub">setup + €0.13 / мин звонка</div>
+          <div class="p-time">+2 недели к 1А</div>
+        </div>
+      </div>
+      <p class="addon-desc">
+        AI отвечает на входящие звонки — та же база знаний, та же история клиента, та же передача оператору.
+        Единый центр обращений объединит текст <em>и</em> голос в одном окне.
+      </p>
+      <ul class="delivs" style="margin-bottom:12px;">
+        <li>Голосовой агент на входящие звонки</li>
+        <li>Та же KB: наличие, цены, статусы заказов</li>
+        <li>Транскрипт каждого звонка в истории клиента</li>
+        <li>Передача на оператора с контекстом разговора</li>
+      </ul>
+      <div class="addon-note">
+        <strong>Почему это имеет смысл сделать в первый месяц:</strong> голосовой модуль надстраивается над уже готовой инфраструктурой центра обращений. Добавить его позже — дороже. Сделать сразу — закрыть все каналы коммуникации за один этап.
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- CASES -->
+<!-- ROADMAP -->
 <section>
   <div class="container">
-    <div class="section-label">Похожие проекты</div>
-    <div class="section-title">Что получилось в аналогичных задачах</div>
-    <div class="cases-grid">
-      <div class="case-item">
-        <div class="case-icon">📊</div>
-        <div class="case-desc">
-          <strong>AI-аналитика рекламы — дашборд из 4 каналов</strong>
-          Единый дашборд + AI-рекомендации по перераспределению бюджета без участия агентства.
+    <div class="s-label">Как видим движение дальше</div>
+    <h2 class="s-title">Этапы 2 и 3 — по готовности</h2>
+    <p class="s-sub">Предлагаем только когда Этап 1 в работе и команда готова к следующему шагу.</p>
+
+    <div class="phases">
+
+      <!-- Phase 2: Dashboard -->
+      <div class="phase-card p2">
+        <div class="phase-top">
+          <div class="phase-left">
+            <div class="p-num">Этап 2 · По готовности</div>
+            <div class="p-name">Аналитический дашборд</div>
+          </div>
+          <div class="price-block">
+            <span class="badge badge-purple">Следующий шаг</span>
+            <div class="p-price">$4–5 000</div>
+            <div class="p-price-sub">ориентировочно</div>
+            <div class="p-time">3–4 недели</div>
+          </div>
         </div>
-        <div class="case-result">Без доп. агентства</div>
-      </div>
-      <div class="case-item">
-        <div class="case-icon">🔗</div>
-        <div class="case-desc">
-          <strong>API-бридж для недвижимости → CRM</strong>
-          Данные из внешних источников попадают в CRM 24/7 без ручного переноса.
+
+        <ul class="delivs">
+          <li>1С + GA + Метрика + Манго → 1 экран</li>
+          <li>Drill-down от категории до SKU</li>
+          <li>Автообновление без ручного сбора</li>
+          <li>Ежедневная сводка утром</li>
+          <li>KPI по сотрудникам и магазинам</li>
+          <li>Данные для управления ассортиментом</li>
+        </ul>
+        <div class="p-note">
+          <strong>Что изменится:</strong> Артём видит картину бизнеса утром, а не в 23:00. То, что аналитик сейчас собирает руками в Google Sheets — обновляется автоматически.
         </div>
-        <div class="case-result">Данные 24/7</div>
+
+        <details>
+          <summary>+ Деанонимизация покупок на кассе — отдельное обсуждение</summary>
+          <div class="acc-body">
+            <p><strong>Проблема:</strong> 90% розничных чеков анонимные. Повторные продажи работают только на 10% базы.</p>
+            <p><strong>Механика:</strong> планшет на кассе — покупатель вводит телефон за 10 секунд, данные уходят напрямую в 1С. Для аудитории DrHead работает эксклюзив, а не скидки: закрытые прослушивания, приоритетный доступ к релизам, история покупок в личном кабинете.</p>
+            <p>Стоимость и сроки обсуждаем отдельно после старта Этапа 1.</p>
+          </div>
+        </details>
       </div>
-      <div class="case-item">
-        <div class="case-icon">🦷</div>
-        <div class="case-desc">
-          <strong>Стоматология — 80% автоматизация обращений</strong>
-          Администраторы перестали обрабатывать первичные запросы вручную — освободились для сложных задач.
+
+      <!-- Phase 3: HR Bot -->
+      <div class="phase-card p3">
+        <div class="phase-top">
+          <div class="phase-left">
+            <div class="p-num">Этап 3 · По запросам команды</div>
+            <div class="p-name">HR-бот для сотрудников</div>
+          </div>
+          <div class="price-block">
+            <span class="badge badge-gray">Фаза 3</span>
+            <div class="p-price">$3–4 000</div>
+            <div class="p-price-sub">ориентировочно</div>
+          </div>
         </div>
-        <div class="case-result">80% авто</div>
+
+        <ul class="delivs">
+          <li>Рассылки и напоминания (отпуска, ДР, мероприятия)</li>
+          <li>Онбординг сотрудников (планы, чек-листы)</li>
+          <li>Быстрый доступ к инфо о компании</li>
+          <li>Схемы, контакты, структура</li>
+          <li>Внутренняя база знаний / wiki</li>
+          <li>Ответы на типовые HR-вопросы</li>
+        </ul>
+        <div class="p-note">
+          <strong>Источник:</strong> запрос сформирован из анкет команды. Детали и объём уточняем после старта Этапа 1 — под реальные приоритеты Ольги и команды.
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -643,62 +556,149 @@ section {
 <!-- SUPPORT -->
 <section>
   <div class="container">
-    <div class="section-label">После запуска</div>
-    <div class="section-title">Условия поддержки</div>
-    <div class="support-grid">
-      <div class="support-item">
-        <div class="s-label">Первые 3 месяца</div>
-        <div class="s-price">Included</div>
-        <ul>
-          <li>Мониторинг системы</li>
-          <li>Багфиксы без доп. оплаты</li>
-          <li>Корректировки логики</li>
-          <li>Еженедельный чекин</li>
+    <div class="s-label">Поддержка после запуска</div>
+    <h2 class="s-title">Остаёмся в проекте</h2>
+
+    <div class="sup-grid">
+      <div class="sup-card">
+        <div class="sup-title">Первые 3 месяца</div>
+        <div class="sup-price">Включено</div>
+        <div class="sup-desc">Мониторинг, правки, обновление базы знаний, ответы на вопросы команды</div>
+      </div>
+      <div class="sup-card">
+        <div class="sup-title">Стандартная поддержка</div>
+        <div class="sup-price">$75 / час</div>
+        <div class="sup-desc">Доработки, изменение логики, новые сценарии — обычно 2–4 часа в месяц</div>
+      </div>
+      <div class="sup-card">
+        <div class="sup-title">Экстренный SLA</div>
+        <div class="sup-price">$100 / час</div>
+        <div class="sup-desc">Критические сбои — ответ в течение 4 часов, устранение в тот же день</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TERMS -->
+<section>
+  <div class="container">
+    <div class="s-label">Условия сотрудничества</div>
+    <h2 class="s-title">Как работаем</h2>
+
+    <div class="terms-grid">
+      <div class="term-card">
+        <div class="term-title">Оплата</div>
+        <ul class="term-list">
+          <li><strong>Старт проекта</strong>50% предоплата после подписания договора</li>
+          <li><strong>Сдача</strong>50% по Акту приёмки-передачи выполненных работ</li>
+          <li><strong>Подписка CTO</strong>Ежемесячно, счёт в первый рабочий день месяца</li>
+          <li><strong>Срок оплаты</strong>5 рабочих дней с даты выставления счёта</li>
         </ul>
       </div>
-      <div class="support-item">
-        <div class="s-label">Стандарт</div>
-        <div class="s-price">€50/час</div>
-        <ul>
-          <li>Новые интеграции</li>
-          <li>Обновление метрик</li>
-          <li>Обычно 2–4 ч/мес</li>
-          <li>Ответ до 24 ч</li>
+      <div class="term-card">
+        <div class="term-title">Обязательства сторон</div>
+        <ul class="term-list">
+          <li><strong>Клиент предоставляет</strong>Доступы к каналам (JivoChat, VK, Avito, WA API), FAQ и материалы для базы знаний</li>
+          <li><strong>Инфраструктура</strong>~$200 / мес — хостинг и API (OpenAI, мессенджеры). Клиент оплачивает напрямую провайдерам; сумма включена в ежемесячный платёж по центру обращений</li>
+          <li><strong>Исполнитель</strong>Выполняет работы по согласованному ТЗ, приступает после предоплаты</li>
         </ul>
       </div>
-      <div class="support-item">
-        <div class="s-label">Emergency SLA</div>
-        <div class="s-price">€75/час</div>
-        <ul>
-          <li>Критичные сбои</li>
-          <li>Ответ ≤ 4 часа</li>
-          <li>Приоритетная очередь</li>
-          <li>Всегда доступно</li>
+      <div class="term-card">
+        <div class="term-title">Выход из подписки</div>
+        <ul class="term-list">
+          <li><strong>Уведомление</strong>За 30 дней до окончания расчётного периода</li>
+          <li><strong>Передача</strong>Вся документация, архитектура и доступы передаются клиенту</li>
+          <li><strong>Незакрытые задачи</strong>Оговариваются отдельно при выходе</li>
+        </ul>
+      </div>
+      <div class="term-card">
+        <div class="term-title">Ответственность</div>
+        <ul class="term-list">
+          <li><strong>Исполнитель</strong>Отвечает за качество и сроки внедрения по ТЗ</li>
+          <li><strong>Гарантия</strong>Устранение дефектов в рамках бесплатной поддержки 3 месяца</li>
+          <li><strong>Конфиденциальность</strong>NDA подписывается до старта работ. Данные клиентов хранятся на серверах исполнителя, не передаются третьим лицам</li>
+          <li><strong>Форс-мажор</strong>Регулируется рамочным договором</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TEAM -->
+<!-- DEMO -->
 <section>
   <div class="container">
-    <div class="section-label">Кто делает</div>
-    <div class="section-title">Вы работаете напрямую с нами</div>
-    <div class="team-grid">
-      <div class="team-card">
-        <div class="team-name">Danil Usik</div>
-        <div class="team-role">Strategy · CEO</div>
-        <p>Диагностика, архитектура решения, приёмка результата. 10+ лет B2B, 5+ лет AI-автоматизация. Вы всегда работаете со мной напрямую — не с аккаунт-менеджером.</p>
+    <div class="s-label">Как видит оператор</div>
+    <h2 class="s-title">Один экран вместо пяти чатов</h2>
+    <p class="s-sub">Клиент написал в Telegram вчера и в Instagram сегодня — оператор видит это как один диалог с полной историей.</p>
+
+    <div class="demo-window">
+      <!-- Left: conversation list -->
+      <div class="demo-left">
+        <div class="demo-search">🔍 Поиск клиента...</div>
+        <div class="demo-conv active">
+          <div class="demo-conv-name">Иван Петров</div>
+          <div class="demo-conv-preview">Когда курьер приедет точно?</div>
+          <div class="demo-conv-chs"><span class="demo-ch tg">TG</span><span class="demo-ch ig">IG</span></div>
+        </div>
+        <div class="demo-conv">
+          <div class="demo-conv-name">Анна Соколова</div>
+          <div class="demo-conv-preview">⚡ AI ответил — ожидает</div>
+          <div class="demo-conv-chs"><span class="demo-ch wa">WA</span></div>
+        </div>
+        <div class="demo-conv">
+          <div class="demo-conv-name">Сергей М.</div>
+          <div class="demo-conv-preview">Focal Arche есть в наличии?</div>
+          <div class="demo-conv-chs"><span class="demo-ch jv">Jivo</span></div>
+        </div>
+        <div class="demo-conv">
+          <div class="demo-conv-name">Новое обращение</div>
+          <div class="demo-conv-preview">Добрый день, подскажите...</div>
+          <div class="demo-conv-chs"><span class="demo-ch tg">TG</span></div>
+        </div>
       </div>
-      <div class="team-card">
-        <div class="team-name">Svetlana Galakhova</div>
-        <div class="team-role">Tech Lead · CTO</div>
-        <p>Техническая архитектура, интеграции, AI-слой. Руководит командой разработчиков — ваш дашборд строят люди с опытом в production AI-системах.</p>
+
+      <!-- Right: conversation detail -->
+      <div class="demo-right">
+        <div class="demo-hdr">
+          <div>
+            <div class="demo-client-name">Иван Петров</div>
+            <div style="font-size:11px; color:var(--muted); margin-top:2px; display:flex; gap:5px; align-items:center;">
+              <span class="demo-ch tg">TG</span> вчера 14:32 · <span class="demo-ch ig">IG</span> сегодня 09:14
+            </div>
+          </div>
+          <div style="font-size:11px; color:var(--muted);">2 канала · 4 сообщения</div>
+        </div>
+
+        <div class="demo-msgs">
+          <div class="demo-msg-wrap">
+            <div class="demo-msg-meta"><span class="demo-ch tg">Telegram</span><span>Вчера 14:32</span></div>
+            <div class="demo-msg client">Добрый день! Хочу уточнить статус заказа #4821</div>
+          </div>
+          <div class="demo-msg-wrap r">
+            <div class="demo-msg-meta" style="justify-content:flex-end;"><span style="color:var(--blue);">⚡ AI автоответ</span></div>
+            <div class="demo-msg ai">Добрый день, Иван! Заказ #4821 — Focal Arche Pro, отгружен 12 марта, доставка СДЭК 1–3 дня.</div>
+          </div>
+          <div class="demo-msg-wrap">
+            <div class="demo-msg-meta"><span class="demo-ch ig">Instagram</span><span>Сегодня 09:14</span></div>
+            <div class="demo-msg client">Привет, писал вчера в телеграм по заказу. Когда курьер приедет точно?</div>
+          </div>
+          <div class="demo-msg-wrap r">
+            <div class="demo-msg-meta" style="justify-content:flex-end;"><span style="color:var(--green);">👤 Оператор (Алексей)</span></div>
+            <div class="demo-msg op">Иван, вижу всю историю. Трек-номер СДЭК отправил в TG. Курьер завтра с 10 до 18.</div>
+          </div>
+        </div>
+
+        <div class="demo-footer">
+          <input class="demo-input" placeholder="Написать ответ..." readonly>
+          <button class="demo-send-btn">→</button>
+        </div>
       </div>
     </div>
-    <div class="team-stats">
-      AI Hub · Practical AI · 8-person engineering team · 50+ projects delivered
+
+    <div class="demo-legend">
+      <div class="demo-legend-item"><div class="demo-dot" style="background:var(--blue);"></div>AI отвечает на типовые запросы автоматически</div>
+      <div class="demo-legend-item"><div class="demo-dot" style="background:var(--green);"></div>Оператор видит всю историю клиента по всем каналам</div>
+      <div class="demo-legend-item"><div class="demo-dot" style="background:rgba(255,255,255,0.2);"></div>Клиент не повторяет вопросы при смене канала</div>
     </div>
   </div>
 </section>
@@ -706,25 +706,11 @@ section {
 <!-- CTA -->
 <div class="cta-section">
   <div class="container">
-    <div class="cta-box">
-      <h2>Следующий шаг — фиксируем Phase 1</h2>
-      <p>Аудит процессов и архитектура дашборда. Две недели — и у вас полная картина что строить, в каком порядке и с каким результатом.</p>
-      <a href="https://t.me/danilusik" class="cta-btn">→ Запустить Phase 1</a>
-      <div class="cta-contact">
-        Telegram: <a href="https://t.me/danilusik">@danilusik</a> &nbsp;·&nbsp;
-        Email: <a href="mailto:danil@practicalai.es">danil@practicalai.es</a>
-      </div>
-    </div>
+    <h2>Следующий шаг — финальный созвон</h2>
+    <p>Фиксируем объём Этапа 1 и дату старта. Приходим вместе — разберём технику прямо на звонке.</p>
+    <a href="mailto:usik.d.o@gmail.com" class="cta-btn">→ Подтвердить дату встречи</a>
+    <div class="cta-sub">Данил Усик · <a href="mailto:usik.d.o@gmail.com">usik.d.o@gmail.com</a> · Telegram: @danilusik</div>
   </div>
-</div>
-
-<!-- SAVE AS PDF -->
-<div style="position:fixed; bottom:24px; right:24px; z-index:999;" class="no-print">
-  <button onclick="window.print()" style="background:#3b82f6; color:#fff; border:none;
-    padding:10px 20px; border-radius:8px; font-size:13px; font-weight:600;
-    cursor:pointer; font-family:inherit; box-shadow:0 4px 12px rgba(59,130,246,0.4);">
-    ↓ Save as PDF
-  </button>
 </div>
 
 </body>
