@@ -190,6 +190,27 @@ details[open] summary::before { transform: rotate(90deg); }
 .demo-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
 .demo-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
+/* ROI CALCULATOR */
+.roi-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+.roi-group { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; }
+.roi-group-title { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.roi-slider-item { margin-bottom: 13px; }
+.roi-slider-item:last-child { margin-bottom: 0; }
+.roi-slider-label { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+.roi-slider-name { font-size: 12.5px; color: var(--subtle); }
+.roi-slider-val { font-size: 13px; font-weight: 700; color: var(--text); min-width: 80px; text-align: right; }
+.roi-slider { width: 100%; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.1); outline: none; -webkit-appearance: none; cursor: pointer; accent-color: var(--blue); }
+.roi-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--blue); cursor: pointer; }
+.roi-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
+.roi-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; }
+.roi-card.roi-payback-card { border-color: rgba(245,158,11,0.35); background: rgba(245,158,11,0.05); }
+.roi-rlabel { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.roi-big { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); }
+.roi-big.amber { color: var(--amber); }
+.roi-subnote { font-size: 12px; color: var(--muted); margin-top: 5px; line-height: 1.4; }
+.roi-hint { background: rgba(59,130,246,0.05); border: 1px solid rgba(59,130,246,0.15); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--muted); margin-top: 4px; }
+.roi-hint strong { color: var(--subtle); }
+
 /* CTA */
 .cta-section { text-align: center; padding: 52px 0 60px; }
 .cta-section h2 { font-size: 24px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.01em; }
@@ -268,6 +289,13 @@ details[open] summary::before { transform: rotate(90deg); }
   .voice-not-included { background: #fef3c7; color: #92400e; border-color: #fde68a; }
   .voice-item { color: #374151; }
   .voice-item::before { color: #d97706 !important; }
+  .roi-cols, .roi-slider { display: none; }
+  .roi-results { break-inside: avoid; page-break-inside: avoid; }
+  .roi-card { background: #f9fafb !important; border-color: #e5e7eb !important; }
+  .roi-card.roi-payback-card { background: #fffbeb !important; border-color: #fde68a !important; }
+  .roi-big { color: #111 !important; }
+  .roi-big.amber { color: #d97706 !important; }
+  .roi-hint { display: none; }
   .addon-card { background: #fffbeb !important; border-color: #fde68a !important; break-inside: avoid; page-break-inside: avoid; }
   .addon-badge { background: #fef3c7; color: #92400e; border-color: #fde68a; }
   .addon-desc, .addon-note { color: #374151; }
@@ -329,11 +357,6 @@ details[open] summary::before { transform: rotate(90deg); }
       </div>
     </div>
 
-    <div class="quote">
-      «Ребята кое-как задней ногой общаются в чатах. Если выстроить нормальный отдел с ботами — мы могли бы ещё больше.
-      Хочу открыть США, Лондон, Германию — но понимаю, что буду масштабировать хаос.»
-      <cite>— Артём, DrHead</cite>
-    </div>
   </div>
 </section>
 
@@ -733,6 +756,107 @@ details[open] summary::before { transform: rotate(90deg); }
   </div>
 </section>
 
+<!-- ROI -->
+<section>
+  <div class="container">
+    <div class="s-label">Посчитайте сами</div>
+    <h2 class="s-title">Сколько стоит текущая ситуация</h2>
+    <p class="s-sub">Данные предзаполнены по нашим встречам — двигайте слайдеры под свои цифры.</p>
+
+    <div class="roi-cols">
+      <div class="roi-group">
+        <div class="roi-group-title">💬 Потери от пропущенных обращений</div>
+
+        <div class="roi-slider-item">
+          <div class="roi-slider-label">
+            <span class="roi-slider-name">Обращений в день</span>
+            <span class="roi-slider-val" id="v_calls">20</span>
+          </div>
+          <input class="roi-slider" type="range" id="roi_calls" min="5" max="150" step="5" value="20" oninput="calcRoi()">
+        </div>
+
+        <div class="roi-slider-item">
+          <div class="roi-slider-label">
+            <span class="roi-slider-name">Теряется / отвечается с задержкой</span>
+            <span class="roi-slider-val" id="v_lost">30%</span>
+          </div>
+          <input class="roi-slider" type="range" id="roi_lost_pct" min="10" max="70" step="5" value="30" oninput="calcRoi()">
+        </div>
+
+        <div class="roi-slider-item">
+          <div class="roi-slider-label">
+            <span class="roi-slider-name">Конверсия обращения в покупку</span>
+            <span class="roi-slider-val" id="v_conv">15%</span>
+          </div>
+          <input class="roi-slider" type="range" id="roi_conv" min="5" max="40" step="1" value="15" oninput="calcRoi()">
+        </div>
+
+        <div class="roi-slider-item">
+          <div class="roi-slider-label">
+            <span class="roi-slider-name">Средний чек</span>
+            <span class="roi-slider-val" id="v_check">40 000 ₽</span>
+          </div>
+          <input class="roi-slider" type="range" id="roi_check" min="10000" max="200000" step="5000" value="40000" oninput="calcRoi()">
+        </div>
+      </div>
+
+      <div class="roi-group">
+        <div class="roi-group-title">⏱ Ручной труд операторов</div>
+
+        <div class="roi-slider-item">
+          <div class="roi-slider-label">
+            <span class="roi-slider-name">Операторов на коммуникациях</span>
+            <span class="roi-slider-val" id="v_ops">2</span>
+          </div>
+          <input class="roi-slider" type="range" id="roi_ops" min="1" max="10" step="1" value="2" oninput="calcRoi()">
+        </div>
+
+        <div class="roi-slider-item">
+          <div class="roi-slider-label">
+            <span class="roi-slider-name">Часов на рутину в день / оператор</span>
+            <span class="roi-slider-val" id="v_hours">1.5 ч</span>
+          </div>
+          <input class="roi-slider" type="range" id="roi_hours" min="0.5" max="5" step="0.5" value="1.5" oninput="calcRoi()">
+        </div>
+
+        <div class="roi-slider-item">
+          <div class="roi-slider-label">
+            <span class="roi-slider-name">Стоимость часа работы</span>
+            <span class="roi-slider-val" id="v_rate">1 500 ₽</span>
+          </div>
+          <input class="roi-slider" type="range" id="roi_rate" min="500" max="5000" step="250" value="1500" oninput="calcRoi()">
+        </div>
+
+        <div class="roi-hint">
+          <strong>Из наших встреч:</strong> Алексей и Павел переключаются между 5 чатами. По опыту — 1.5–2 часа в день уходит на рутину вместо продаж.
+        </div>
+      </div>
+    </div>
+
+    <div class="roi-results">
+      <div class="roi-card">
+        <div class="roi-rlabel">Теряете продаж в месяц</div>
+        <div class="roi-big" id="r_lost">—</div>
+        <div class="roi-subnote" id="r_lost_note"></div>
+      </div>
+      <div class="roi-card">
+        <div class="roi-rlabel">Платите за ручной труд</div>
+        <div class="roi-big" id="r_labor">—</div>
+        <div class="roi-subnote" id="r_labor_note"></div>
+      </div>
+      <div class="roi-card roi-payback-card">
+        <div class="roi-rlabel">Окупаемость решения</div>
+        <div class="roi-big amber" id="r_payback">—</div>
+        <div class="roi-subnote" id="r_payback_note"></div>
+      </div>
+    </div>
+
+    <p style="font-size:11.5px; color:var(--muted); text-align:center;">
+      Консервативная оценка. Курс €1 = 100 ₽. Стоимость решения: €3,000 разово + €2,200 / мес.
+    </p>
+  </div>
+</section>
+
 <!-- CTA -->
 <div class="cta-section">
   <div class="container">
@@ -743,5 +867,55 @@ details[open] summary::before { transform: rotate(90deg); }
   </div>
 </div>
 
+<script>
+function fmtRub(val) {
+  if (val >= 1000000) return (val / 1000000).toFixed(1).replace('.', ',') + ' млн ₽';
+  if (val >= 1000) return Math.round(val / 1000) + ' тыс. ₽';
+  return Math.round(val) + ' ₽';
+}
+
+function calcRoi() {
+  const calls    = parseFloat(document.getElementById('roi_calls').value);
+  const lostPct  = parseFloat(document.getElementById('roi_lost_pct').value) / 100;
+  const convPct  = parseFloat(document.getElementById('roi_conv').value) / 100;
+  const check    = parseFloat(document.getElementById('roi_check').value);
+  const ops      = parseFloat(document.getElementById('roi_ops').value);
+  const hours    = parseFloat(document.getElementById('roi_hours').value);
+  const rate     = parseFloat(document.getElementById('roi_rate').value);
+
+  document.getElementById('v_calls').textContent  = calls;
+  document.getElementById('v_lost').textContent   = Math.round(lostPct * 100) + '%';
+  document.getElementById('v_conv').textContent   = Math.round(convPct * 100) + '%';
+  document.getElementById('v_check').textContent  = check.toLocaleString('ru') + ' ₽';
+  document.getElementById('v_ops').textContent    = ops;
+  document.getElementById('v_hours').textContent  = hours + ' ч';
+  document.getElementById('v_rate').textContent   = rate.toLocaleString('ru') + ' ₽';
+
+  const lostCalls    = calls * 30 * lostPct;
+  const lostRevenue  = lostCalls * convPct * check;
+  const laborCost    = ops * hours * 30 * rate;
+  const totalLoss    = lostRevenue + laborCost;
+
+  const solutionSetup   = 300000; // €3,000 × 100₽
+  const solutionMonthly = 220000; // €2,200 × 100₽
+  const netSaving       = totalLoss - solutionMonthly;
+
+  document.getElementById('r_lost').textContent       = fmtRub(lostRevenue);
+  document.getElementById('r_lost_note').textContent  = Math.round(lostCalls) + ' пропущенных конверсий / мес';
+  document.getElementById('r_labor').textContent      = fmtRub(laborCost);
+  document.getElementById('r_labor_note').textContent = Math.round(ops * hours * 30) + ' ч рутины / мес';
+
+  if (netSaving > 0) {
+    const months = Math.ceil(solutionSetup / netSaving);
+    document.getElementById('r_payback').textContent      = months + ' мес';
+    document.getElementById('r_payback_note').textContent = 'чистая экономия ' + fmtRub(netSaving) + ' / мес после оплаты';
+  } else {
+    document.getElementById('r_payback').textContent      = '> 12 мес';
+    document.getElementById('r_payback_note').textContent = 'попробуйте увеличить обращения или конверсию';
+  }
+}
+
+window.addEventListener('DOMContentLoaded', calcRoi);
+</script>
 </body>
 </html>
