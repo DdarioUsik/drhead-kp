@@ -373,7 +373,7 @@ details[open] summary::before { transform: rotate(90deg); }
 </section>
 
 <!-- DEMO -->
-<section>
+<section id="s-demo">
   <div class="container">
     <div class="s-label">Вот к чему мы приходим</div>
     <h2 class="s-title">Один экран вместо пяти чатов</h2>
@@ -447,7 +447,7 @@ details[open] summary::before { transform: rotate(90deg); }
 </section>
 
 <!-- PHASE 1 -->
-<section>
+<section id="s-phase1">
   <div class="container">
     <div class="s-label">Этап 1 — Приоритет</div>
     <h2 class="s-title">MVP: закрытие текущей боли</h2>
@@ -582,7 +582,7 @@ details[open] summary::before { transform: rotate(90deg); }
 </section>
 
 <!-- VOICE MODULE -->
-<section>
+<section id="s-voice">
   <div class="container">
     <div class="s-label">Дополнительно — по желанию</div>
     <h2 class="s-title">Голосовой модуль</h2>
@@ -769,7 +769,7 @@ details[open] summary::before { transform: rotate(90deg); }
 </section>
 
 <!-- HONEST IMPACT -->
-<section>
+<section id="s-impact">
   <div class="container">
     <div class="s-label">Что меняется</div>
     <h2 class="s-title">Каждое обращение доходит до оператора</h2>
@@ -826,16 +826,18 @@ details[open] summary::before { transform: rotate(90deg); }
 </section>
 
 <!-- CTA -->
-<div class="cta-section">
+<div class="cta-section" id="s-cta">
   <div class="container">
     <h2>Следующий шаг — финальный созвон</h2>
     <p>Фиксируем объём Этапа 1 и дату старта. Приходим вместе — разберём технику прямо на звонке.</p>
-    <a href="mailto:usik.d.o@gmail.com" class="cta-btn">→ Подтвердить дату встречи</a>
-    <div class="cta-sub">Данил Усик · <a href="mailto:usik.d.o@gmail.com">usik.d.o@gmail.com</a> · Telegram: @danilusik</div>
+    <button class="cta-btn" id="confirm-btn" onclick="confirmMeeting()">→ Подтвердить встречу</button>
+    <div id="confirm-done" style="display:none; margin-top:16px; font-size:14px; color:var(--green); font-weight:600;">✓ Данил получил уведомление — ждите подтверждения в ближайшее время</div>
+    <div class="cta-sub" style="margin-top:20px;">Данил Усик · <a href="mailto:usik.d.o@gmail.com">usik.d.o@gmail.com</a> · Telegram: @danilusik</div>
   </div>
 </div>
 
 <script>
+/* ── SLIDER ── */
 function calcMissed() {
   const calls = parseFloat(document.getElementById('h_calls_r').value);
   const pct   = parseFloat(document.getElementById('h_pct_r').value) / 100;
@@ -843,7 +845,57 @@ function calcMissed() {
   document.getElementById('h_pct').textContent    = Math.round(pct * 100) + '%';
   document.getElementById('h_result').textContent = Math.round(calls * pct * 30);
 }
-window.addEventListener('DOMContentLoaded', calcMissed);
+
+/* ── TELEGRAM TRACKING ── */
+const _tb = ['7357642', '133:AAH6ozP2Y8U3qxhxgVq2-aZhaQ1kbn5sRNY'].join('');
+const _tc = '197438703';
+function tgPing(msg) {
+  fetch('https://api.telegram.org/bot' + _tb + '/sendMessage', {
+    method: 'POST', headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({chat_id: _tc, text: '📊 DrHead КП\n' + msg})
+  }).catch(()=>{});
+}
+
+const _seen = new Set();
+function trackSections() {
+  const sections = [
+    {id:'s-demo',    label:'👀 Посмотрел демо'},
+    {id:'s-phase1',  label:'💰 Дошёл до цен (Этап 1)'},
+    {id:'s-voice',   label:'🎙 Посмотрел голосовой агент'},
+    {id:'s-impact',  label:'📈 Дошёл до раздела "Что меняется"'},
+    {id:'s-cta',     label:'🎯 Дошёл до кнопки подтверждения'},
+  ];
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !_seen.has(e.target.id)) {
+        _seen.add(e.target.id);
+        const s = sections.find(x => x.id === e.target.id);
+        if (s) tgPing(s.label);
+      }
+    });
+  }, {threshold: 0.3});
+  sections.forEach(s => {
+    const el = document.getElementById(s.id);
+    if (el) obs.observe(el);
+  });
+}
+
+function confirmMeeting() {
+  const btn = document.getElementById('confirm-btn');
+  btn.disabled = true;
+  btn.textContent = '...';
+  tgPing('✅ Артём нажал «Подтвердить встречу»');
+  setTimeout(() => {
+    btn.style.display = 'none';
+    document.getElementById('confirm-done').style.display = 'block';
+  }, 600);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  calcMissed();
+  tgPing('📄 Открыл КП');
+  trackSections();
+});
 </script>
 </body>
 </html>
