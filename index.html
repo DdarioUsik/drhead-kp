@@ -198,6 +198,20 @@ details[open] summary::before { transform: rotate(90deg); }
 .cta-sub { margin-top: 16px; font-size: 13px; color: var(--muted); }
 .cta-sub a { color: var(--blue); text-decoration: none; }
 
+/* ARTIFACT CALLOUT */
+.artifact-callout { display: flex; gap: 10px; align-items: flex-start; margin-top: 10px; background: rgba(139,92,246,0.06); border: 1px solid rgba(139,92,246,0.2); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--subtle); line-height: 1.5; }
+.artifact-callout strong { color: var(--purple); }
+.artifact-ico { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+/* VOICE SECTION (standalone) */
+.voice-section-card { background: rgba(245,158,11,0.04); border: 1px dashed rgba(245,158,11,0.3); border-radius: var(--radius); padding: 20px 24px; }
+.voice-not-included { display: inline-block; font-size: 11px; font-weight: 700; color: var(--amber); background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.25); padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; }
+.voice-layout { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; }
+.voice-items { display: flex; flex-direction: column; gap: 5px; margin: 10px 0 0; }
+.voice-item { font-size: 13px; color: var(--subtle); padding-left: 16px; position: relative; }
+.voice-item::before { content: '✓'; position: absolute; left: 0; color: var(--amber); font-weight: 700; font-size: 12px; }
+.voice-price-block { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+
 /* VOICE ADDON */
 .addon-card { margin-top: 16px; background: rgba(245,158,11,0.04); border: 1px dashed rgba(245,158,11,0.3); border-radius: var(--radius); padding: 20px 22px; }
 .addon-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
@@ -248,6 +262,12 @@ details[open] summary::before { transform: rotate(90deg); }
   .rhythm-desc { color: #374151; }
   .trial-note { background: #fffbeb !important; border-color: #fde68a !important; color: #374151; break-inside: avoid; page-break-inside: avoid; }
   .trial-note strong { color: #92400e !important; }
+  .artifact-callout { background: #f5f3ff !important; border-color: #ddd6fe !important; break-inside: avoid; page-break-inside: avoid; }
+  .artifact-callout strong { color: #5b21b6 !important; }
+  .voice-section-card { background: #fffbeb !important; border-color: #fde68a !important; break-inside: avoid; page-break-inside: avoid; }
+  .voice-not-included { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+  .voice-item { color: #374151; }
+  .voice-item::before { color: #d97706 !important; }
   .addon-card { background: #fffbeb !important; border-color: #fde68a !important; break-inside: avoid; page-break-inside: avoid; }
   .addon-badge { background: #fef3c7; color: #92400e; border-color: #fde68a; }
   .addon-desc, .addon-note { color: #374151; }
@@ -313,6 +333,80 @@ details[open] summary::before { transform: rotate(90deg); }
       «Ребята кое-как задней ногой общаются в чатах. Если выстроить нормальный отдел с ботами — мы могли бы ещё больше.
       Хочу открыть США, Лондон, Германию — но понимаю, что буду масштабировать хаос.»
       <cite>— Артём, DrHead</cite>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section>
+  <div class="container">
+    <div class="s-label">Вот к чему мы приходим</div>
+    <h2 class="s-title">Один экран вместо пяти чатов</h2>
+    <p class="s-sub">Клиент написал в Telegram вчера и в Instagram сегодня — оператор видит это как один диалог с полной историей.</p>
+
+    <div class="demo-window">
+      <div class="demo-left">
+        <div class="demo-search">🔍 Поиск клиента...</div>
+        <div class="demo-conv active">
+          <div class="demo-conv-name">Иван Петров</div>
+          <div class="demo-conv-preview">Когда курьер приедет точно?</div>
+          <div class="demo-conv-chs"><span class="demo-ch tg">TG</span><span class="demo-ch ig">IG</span></div>
+        </div>
+        <div class="demo-conv">
+          <div class="demo-conv-name">Анна Соколова</div>
+          <div class="demo-conv-preview">⚡ AI ответил — ожидает</div>
+          <div class="demo-conv-chs"><span class="demo-ch wa">WA</span></div>
+        </div>
+        <div class="demo-conv">
+          <div class="demo-conv-name">Сергей М.</div>
+          <div class="demo-conv-preview">Focal Arche есть в наличии?</div>
+          <div class="demo-conv-chs"><span class="demo-ch jv">Jivo</span></div>
+        </div>
+        <div class="demo-conv">
+          <div class="demo-conv-name">Новое обращение</div>
+          <div class="demo-conv-preview">Добрый день, подскажите...</div>
+          <div class="demo-conv-chs"><span class="demo-ch tg">TG</span></div>
+        </div>
+      </div>
+      <div class="demo-right">
+        <div class="demo-hdr">
+          <div>
+            <div class="demo-client-name">Иван Петров</div>
+            <div style="font-size:11px; color:var(--muted); margin-top:2px; display:flex; gap:5px; align-items:center;">
+              <span class="demo-ch tg">TG</span> вчера 14:32 · <span class="demo-ch ig">IG</span> сегодня 09:14
+            </div>
+          </div>
+          <div style="font-size:11px; color:var(--muted);">2 канала · 4 сообщения</div>
+        </div>
+        <div class="demo-msgs">
+          <div class="demo-msg-wrap">
+            <div class="demo-msg-meta"><span class="demo-ch tg">Telegram</span><span>Вчера 14:32</span></div>
+            <div class="demo-msg client">Добрый день! Хочу уточнить статус заказа #4821</div>
+          </div>
+          <div class="demo-msg-wrap r">
+            <div class="demo-msg-meta" style="justify-content:flex-end;"><span style="color:var(--blue);">⚡ AI автоответ</span></div>
+            <div class="demo-msg ai">Добрый день, Иван! Заказ #4821 — Focal Arche Pro, отгружен 12 марта, доставка СДЭК 1–3 дня.</div>
+          </div>
+          <div class="demo-msg-wrap">
+            <div class="demo-msg-meta"><span class="demo-ch ig">Instagram</span><span>Сегодня 09:14</span></div>
+            <div class="demo-msg client">Привет, писал вчера в телеграм по заказу. Когда курьер приедет точно?</div>
+          </div>
+          <div class="demo-msg-wrap r">
+            <div class="demo-msg-meta" style="justify-content:flex-end;"><span style="color:var(--green);">👤 Оператор (Алексей)</span></div>
+            <div class="demo-msg op">Иван, вижу всю историю. Трек-номер СДЭК отправил в TG. Курьер завтра с 10 до 18.</div>
+          </div>
+        </div>
+        <div class="demo-footer">
+          <input class="demo-input" placeholder="Написать ответ..." readonly>
+          <button class="demo-send-btn">→</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-legend">
+      <div class="demo-legend-item"><div class="demo-dot" style="background:var(--blue);"></div>AI отвечает на типовые запросы автоматически</div>
+      <div class="demo-legend-item"><div class="demo-dot" style="background:var(--green);"></div>Оператор видит всю историю клиента по всем каналам</div>
+      <div class="demo-legend-item"><div class="demo-dot" style="background:rgba(255,255,255,0.2);"></div>Клиент не повторяет вопросы при смене канала</div>
     </div>
   </div>
 </section>
@@ -418,6 +512,10 @@ details[open] summary::before { transform: rotate(90deg); }
           <span class="trial-ico">🔑</span>
           <div><strong>Формат старта — тест-драйв:</strong> подписываем контракт на 1 месяц → собираем картину и даём первый результат → заключаем доп. соглашение на продолжение. Без долгосрочных обязательств с первого дня.</div>
         </div>
+        <div class="artifact-callout">
+          <span class="artifact-ico">📄</span>
+          <div><strong>Артефакт месяца 1:</strong> стратегический план развития системы DrHead на 12 месяцев — документ с приоритетами, архитектурой и дорожной картой, который остаётся у команды независимо от дальнейших решений.</div>
+        </div>
       </div>
 
     </div>
@@ -445,34 +543,43 @@ details[open] summary::before { transform: rotate(90deg); }
       </div>
     </div>
 
-    <!-- VOICE ADDON -->
-    <div class="addon-card">
-      <div class="addon-top">
-        <div class="phase-left">
-          <span class="addon-badge">Опционально · Надстройка над 1А</span>
-          <div class="addon-title">+ Голосовой модуль</div>
+  </div>
+</section>
+
+<!-- VOICE MODULE -->
+<section>
+  <div class="container">
+    <div class="s-label">Дополнительно — по желанию</div>
+    <h2 class="s-title">Голосовой модуль</h2>
+    <p class="s-sub">Отдельный блок, который надстраивается над Этапом 1. Можно запустить сразу или добавить позже.</p>
+
+    <div class="voice-section-card">
+      <span class="voice-not-included">Не входит в итого €5,200 — подключается отдельно</span>
+      <div class="voice-layout">
+        <div>
+          <p style="font-size:14px; font-weight:700; margin-bottom:6px;">+ Голосовой агент на входящие звонки</p>
+          <p style="font-size:13px; color:var(--subtle); line-height:1.6; margin-bottom:10px;">
+            AI отвечает на звонки — та же база знаний, та же история клиента, та же передача оператору с контекстом разговора. Транскрипт каждого звонка попадает в историю клиента рядом с текстовыми сообщениями.
+          </p>
+          <div class="voice-items">
+            <div class="voice-item">Голосовой агент на входящие звонки DrHead</div>
+            <div class="voice-item">Та же KB: наличие, цены, статусы заказов</div>
+            <div class="voice-item">Транскрипт звонка в истории клиента</div>
+            <div class="voice-item">Передача на оператора с контекстом разговора</div>
+          </div>
+          <div class="addon-note" style="margin-top:12px;">
+            <strong>Почему сейчас дешевле:</strong> инфраструктура центра обращений уже готова — голос надстраивается над ней. Запустить вместе с Этапом 1 или позже — оба варианта рабочие.
+          </div>
         </div>
-        <div class="price-block">
-          <div class="p-price">€2 000</div>
-          <div class="p-price-sub">setup + €0.13 / мин звонка</div>
-          <div class="p-time">+2 недели к 1А</div>
+        <div class="voice-price-block">
+          <span class="addon-badge">Опционально</span>
+          <div class="p-price" style="font-size:24px;">€2 000</div>
+          <div class="p-price-sub">setup</div>
+          <div class="p-time" style="font-size:12px; color:var(--muted); margin-top:2px;">+ €0.13 / мин звонка</div>
+          <div class="p-time" style="font-size:12px; color:var(--muted);">+2 недели к 1А</div>
         </div>
-      </div>
-      <p class="addon-desc">
-        AI отвечает на входящие звонки — та же база знаний, та же история клиента, та же передача оператору.
-        Единый центр обращений объединит текст <em>и</em> голос в одном окне.
-      </p>
-      <ul class="delivs" style="margin-bottom:12px;">
-        <li>Голосовой агент на входящие звонки</li>
-        <li>Та же KB: наличие, цены, статусы заказов</li>
-        <li>Транскрипт каждого звонка в истории клиента</li>
-        <li>Передача на оператора с контекстом разговора</li>
-      </ul>
-      <div class="addon-note">
-        <strong>Почему это имеет смысл сделать в первый месяц:</strong> голосовой модуль надстраивается над уже готовой инфраструктурой центра обращений. Добавить его позже — дороже. Сделать сразу — закрыть все каналы коммуникации за один этап.
       </div>
     </div>
-
   </div>
 </section>
 
@@ -494,8 +601,8 @@ details[open] summary::before { transform: rotate(90deg); }
           </div>
           <div class="price-block">
             <span class="badge badge-purple">Следующий шаг</span>
-            <div class="p-price">€4 000–5 000</div>
-            <div class="p-price-sub">уточним после Этапа 1</div>
+            <div class="p-price">до €5 000</div>
+            <div class="p-price-sub">уточняем в процессе Этапа 1</div>
             <div class="p-time">3–4 недели</div>
           </div>
         </div>
@@ -510,7 +617,7 @@ details[open] summary::before { transform: rotate(90deg); }
         </ul>
         <div class="p-note">
           <strong>Что изменится:</strong> Артём видит картину бизнеса утром, а не в 23:00. То, что аналитик сейчас собирает руками в Google Sheets — обновляется автоматически.
-          <br><br><strong>Почему диапазон цены:</strong> точная стоимость зависит от числа источников данных и глубины интеграции — это станет понятно по итогам Этапа 1. Зафиксируем цифру до начала работ.
+          <br><br><strong>Потолок цены — €5,000:</strong> точная стоимость зависит от числа источников данных и глубины интеграции — уточняем в процессе реализации Этапа 1. Цифра фиксируется до начала работ.
         </div>
 
         <details>
@@ -532,8 +639,8 @@ details[open] summary::before { transform: rotate(90deg); }
           </div>
           <div class="price-block">
             <span class="badge badge-gray">Фаза 3</span>
-            <div class="p-price">€3 000–4 000</div>
-            <div class="p-price-sub">уточним после Этапа 1</div>
+            <div class="p-price">до €4 000</div>
+            <div class="p-price-sub">уточняем в процессе Этапа 1</div>
           </div>
         </div>
 
@@ -546,7 +653,7 @@ details[open] summary::before { transform: rotate(90deg); }
           <li>Ответы на типовые HR-вопросы</li>
         </ul>
         <div class="p-note">
-          <strong>Источник:</strong> запрос сформирован из анкет команды. Детали и объём уточняем после старта Этапа 1 — под реальные приоритеты Ольги и команды. Цена фиксируется до начала работ.
+          <strong>Источник:</strong> запрос сформирован из анкет команды. Детали и объём уточняем в процессе реализации Этапа 1 — под реальные приоритеты Ольги и команды. Потолок €4,000 — цифра фиксируется до начала работ.
         </div>
       </div>
 
@@ -622,85 +729,6 @@ details[open] summary::before { transform: rotate(90deg); }
           <li><strong>Форс-мажор</strong>Регулируется рамочным договором</li>
         </ul>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- DEMO -->
-<section>
-  <div class="container">
-    <div class="s-label">Как видит оператор</div>
-    <h2 class="s-title">Один экран вместо пяти чатов</h2>
-    <p class="s-sub">Клиент написал в Telegram вчера и в Instagram сегодня — оператор видит это как один диалог с полной историей.</p>
-
-    <div class="demo-window">
-      <!-- Left: conversation list -->
-      <div class="demo-left">
-        <div class="demo-search">🔍 Поиск клиента...</div>
-        <div class="demo-conv active">
-          <div class="demo-conv-name">Иван Петров</div>
-          <div class="demo-conv-preview">Когда курьер приедет точно?</div>
-          <div class="demo-conv-chs"><span class="demo-ch tg">TG</span><span class="demo-ch ig">IG</span></div>
-        </div>
-        <div class="demo-conv">
-          <div class="demo-conv-name">Анна Соколова</div>
-          <div class="demo-conv-preview">⚡ AI ответил — ожидает</div>
-          <div class="demo-conv-chs"><span class="demo-ch wa">WA</span></div>
-        </div>
-        <div class="demo-conv">
-          <div class="demo-conv-name">Сергей М.</div>
-          <div class="demo-conv-preview">Focal Arche есть в наличии?</div>
-          <div class="demo-conv-chs"><span class="demo-ch jv">Jivo</span></div>
-        </div>
-        <div class="demo-conv">
-          <div class="demo-conv-name">Новое обращение</div>
-          <div class="demo-conv-preview">Добрый день, подскажите...</div>
-          <div class="demo-conv-chs"><span class="demo-ch tg">TG</span></div>
-        </div>
-      </div>
-
-      <!-- Right: conversation detail -->
-      <div class="demo-right">
-        <div class="demo-hdr">
-          <div>
-            <div class="demo-client-name">Иван Петров</div>
-            <div style="font-size:11px; color:var(--muted); margin-top:2px; display:flex; gap:5px; align-items:center;">
-              <span class="demo-ch tg">TG</span> вчера 14:32 · <span class="demo-ch ig">IG</span> сегодня 09:14
-            </div>
-          </div>
-          <div style="font-size:11px; color:var(--muted);">2 канала · 4 сообщения</div>
-        </div>
-
-        <div class="demo-msgs">
-          <div class="demo-msg-wrap">
-            <div class="demo-msg-meta"><span class="demo-ch tg">Telegram</span><span>Вчера 14:32</span></div>
-            <div class="demo-msg client">Добрый день! Хочу уточнить статус заказа #4821</div>
-          </div>
-          <div class="demo-msg-wrap r">
-            <div class="demo-msg-meta" style="justify-content:flex-end;"><span style="color:var(--blue);">⚡ AI автоответ</span></div>
-            <div class="demo-msg ai">Добрый день, Иван! Заказ #4821 — Focal Arche Pro, отгружен 12 марта, доставка СДЭК 1–3 дня.</div>
-          </div>
-          <div class="demo-msg-wrap">
-            <div class="demo-msg-meta"><span class="demo-ch ig">Instagram</span><span>Сегодня 09:14</span></div>
-            <div class="demo-msg client">Привет, писал вчера в телеграм по заказу. Когда курьер приедет точно?</div>
-          </div>
-          <div class="demo-msg-wrap r">
-            <div class="demo-msg-meta" style="justify-content:flex-end;"><span style="color:var(--green);">👤 Оператор (Алексей)</span></div>
-            <div class="demo-msg op">Иван, вижу всю историю. Трек-номер СДЭК отправил в TG. Курьер завтра с 10 до 18.</div>
-          </div>
-        </div>
-
-        <div class="demo-footer">
-          <input class="demo-input" placeholder="Написать ответ..." readonly>
-          <button class="demo-send-btn">→</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="demo-legend">
-      <div class="demo-legend-item"><div class="demo-dot" style="background:var(--blue);"></div>AI отвечает на типовые запросы автоматически</div>
-      <div class="demo-legend-item"><div class="demo-dot" style="background:var(--green);"></div>Оператор видит всю историю клиента по всем каналам</div>
-      <div class="demo-legend-item"><div class="demo-dot" style="background:rgba(255,255,255,0.2);"></div>Клиент не повторяет вопросы при смене канала</div>
     </div>
   </div>
 </section>
