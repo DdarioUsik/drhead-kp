@@ -760,12 +760,12 @@ details[open] summary::before { transform: rotate(90deg); }
 <section>
   <div class="container">
     <div class="s-label">Посчитайте сами</div>
-    <h2 class="s-title">Сколько стоит текущая ситуация</h2>
-    <p class="s-sub">Данные предзаполнены по нашим встречам — двигайте слайдеры под свои цифры.</p>
+    <h2 class="s-title">Сколько принесёт бот</h2>
+    <p class="s-sub">Бот отвечает на каждое обращение — ни одно не теряется. Двигайте слайдеры под свои цифры.</p>
 
     <div class="roi-cols">
       <div class="roi-group">
-        <div class="roi-group-title">💬 Потери от пропущенных обращений</div>
+        <div class="roi-group-title">💰 Дополнительная выручка от бота</div>
 
         <div class="roi-slider-item">
           <div class="roi-slider-label">
@@ -777,7 +777,7 @@ details[open] summary::before { transform: rotate(90deg); }
 
         <div class="roi-slider-item">
           <div class="roi-slider-label">
-            <span class="roi-slider-name">Теряется / отвечается с задержкой</span>
+            <span class="roi-slider-name">Сейчас без ответа или с задержкой</span>
             <span class="roi-slider-val" id="v_lost">30%</span>
           </div>
           <input class="roi-slider" type="range" id="roi_lost_pct" min="10" max="70" step="5" value="30" oninput="calcRoi()">
@@ -834,13 +834,13 @@ details[open] summary::before { transform: rotate(90deg); }
     </div>
 
     <div class="roi-results">
-      <div class="roi-card">
-        <div class="roi-rlabel">Теряете продаж в месяц</div>
-        <div class="roi-big" id="r_lost">—</div>
+      <div class="roi-card" style="border-color:rgba(16,185,129,0.3);">
+        <div class="roi-rlabel">Бот принесёт дополнительно</div>
+        <div class="roi-big" style="color:var(--green);" id="r_lost">—</div>
         <div class="roi-subnote" id="r_lost_note"></div>
       </div>
       <div class="roi-card">
-        <div class="roi-rlabel">Платите за ручной труд</div>
+        <div class="roi-rlabel">Освобождается труда операторов</div>
         <div class="roi-big" id="r_labor">—</div>
         <div class="roi-subnote" id="r_labor_note"></div>
       </div>
@@ -901,17 +901,17 @@ function calcRoi() {
   const netSaving       = totalLoss - solutionMonthly;
 
   document.getElementById('r_lost').textContent       = fmtRub(lostRevenue);
-  document.getElementById('r_lost_note').textContent  = Math.round(lostCalls) + ' пропущенных конверсий / мес';
+  document.getElementById('r_lost_note').textContent  = Math.round(lostCalls) + ' доп. конверсий / мес — бот не пропустит ни одну';
   document.getElementById('r_labor').textContent      = fmtRub(laborCost);
-  document.getElementById('r_labor_note').textContent = Math.round(ops * hours * 30) + ' ч рутины / мес';
+  document.getElementById('r_labor_note').textContent = Math.round(ops * hours * 30) + ' ч / мес — операторы переходят на сложные задачи';
 
   if (netSaving > 0) {
     const months = Math.ceil(solutionSetup / netSaving);
     document.getElementById('r_payback').textContent      = months + ' мес';
-    document.getElementById('r_payback_note').textContent = 'чистая экономия ' + fmtRub(netSaving) + ' / мес после оплаты';
+    document.getElementById('r_payback_note').textContent = 'чистый прирост ' + fmtRub(netSaving) + ' / мес после оплаты решения';
   } else {
     document.getElementById('r_payback').textContent      = '> 12 мес';
-    document.getElementById('r_payback_note').textContent = 'попробуйте увеличить обращения или конверсию';
+    document.getElementById('r_payback_note').textContent = 'увеличьте объём обращений или конверсию';
   }
 }
 
