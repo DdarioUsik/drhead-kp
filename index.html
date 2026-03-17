@@ -692,7 +692,7 @@ details[open] summary::before { transform: rotate(90deg); }
   <div class="container">
     <div class="s-label">Операционные расходы</div>
     <h2 class="s-title">Сколько стоит работа голосового агента</h2>
-    <p class="s-sub">Вы платите только за реальные минуты разговора — напрямую провайдеру, не нам. Двигайте слайдеры под свои объёмы.</p>
+    <p class="s-sub">Тарификация — только за время речи агента. Пока говорит клиент — счётчик не идёт. Оплата напрямую провайдеру, не нам.</p>
 
     <div class="opex-card no-print">
       <div class="opex-sliders">
@@ -705,7 +705,7 @@ details[open] summary::before { transform: rotate(90deg); }
         </div>
         <div class="opex-slider-item">
           <div class="opex-slider-label">
-            <span>Средняя длительность звонка</span>
+            <span>Длительность речи агента в звонке</span>
             <strong id="op_dur">3 мин</strong>
           </div>
           <input type="range" class="roi-slider" id="op_dur_r" min="1" max="10" step="0.5" value="3" oninput="calcOpex()">
@@ -716,7 +716,7 @@ details[open] summary::before { transform: rotate(90deg); }
           <div class="opex-result-num" id="op_total">$195</div>
           <div class="opex-result-unit">/ мес</div>
         </div>
-        <div class="opex-result-note" id="op_note">500 звонков × 3 мин × $0.13 = $195/мес — стоимость обработки всего входящего потока</div>
+        <div class="opex-result-note" id="op_note">500 звонков × 3 мин речи агента × $0.13 = $195/мес — время клиента не тарифицируется</div>
       </div>
     </div>
 
@@ -918,8 +918,8 @@ function calcOpex() {
   document.getElementById('op_dur').textContent   = dur + ' мин';
   document.getElementById('op_total').textContent = totalDisp;
   document.getElementById('op_note').textContent  =
-    calls.toLocaleString('ru') + ' звонков × ' + dur + ' мин × $0.13 = ' +
-    totalDisp + '/мес — стоимость обработки всего входящего потока';
+    calls.toLocaleString('ru') + ' звонков × ' + dur + ' мин речи агента × $0.13 = ' +
+    totalDisp + '/мес — время клиента не тарифицируется';
 }
 
 /* ── TELEGRAM TRACKING — отключён ── */
