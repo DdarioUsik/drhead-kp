@@ -458,6 +458,63 @@ details[open] summary::before { transform: rotate(90deg); }
   </div>
 </section>
 
+<!-- HONEST IMPACT -->
+<section id="s-impact">
+  <div class="container">
+    <div class="s-label">Что меняется</div>
+    <h2 class="s-title">Каждое обращение доходит до оператора</h2>
+    <p class="s-sub">Бот захватывает каждое обращение и передаёт оператору тёплым. Оператор продаёт — бот следит, чтобы ни один диалог не пропал.</p>
+
+    <div class="honest-grid">
+      <div class="honest-col honest-col-before">
+        <div class="honest-col-label">Сейчас</div>
+        <div class="honest-item">Клиент написал → оператор занят → тишина → ушёл к конкуренту</div>
+        <div class="honest-item">История разбита по 5 каналам — оператор не видит контекст</div>
+        <div class="honest-item">Повторный покупатель не распознаётся, данные теряются</div>
+        <div class="honest-item">Обращение вечером или в выходной — никто не ответит</div>
+      </div>
+      <div class="honest-col honest-col-after">
+        <div class="honest-col-label">С единым центром</div>
+        <div class="honest-item">Каждое обращение получает ответ в течение 30 секунд</div>
+        <div class="honest-item">Оператор видит всю историю клиента из всех каналов сразу</div>
+        <div class="honest-item">Данные уходят в 1С при первом же контакте</div>
+        <div class="honest-item">Бот отвечает 24/7 — оператор подключается к нужным диалогам</div>
+      </div>
+    </div>
+
+    <div class="honest-slider-wrap no-print">
+      <div class="honest-slider-header">Сколько дополнительных диалогов получит оператор</div>
+      <div class="honest-slider-controls">
+        <div class="honest-slider-item">
+          <div class="honest-slider-label">
+            <span>Обращений в день</span>
+            <strong id="h_calls">20</strong>
+          </div>
+          <input type="range" class="roi-slider" id="h_calls_r" min="5" max="100" step="5" value="20" oninput="calcMissed()">
+        </div>
+        <div class="honest-slider-item">
+          <div class="honest-slider-label">
+            <span>Без ответа или с задержкой &gt; 15 мин</span>
+            <strong id="h_pct">30%</strong>
+          </div>
+          <input type="range" class="roi-slider" id="h_pct_r" min="10" max="70" step="5" value="30" oninput="calcMissed()">
+        </div>
+      </div>
+      <div class="honest-result">
+        <div class="honest-result-num" id="h_result">180</div>
+        <div class="honest-result-label">дополнительных диалогов в месяц начнут доходить до оператора</div>
+      </div>
+    </div>
+
+    <div class="honest-case">
+      <div class="honest-case-badge">Из нашей практики</div>
+      <div class="honest-case-stat">+42%</div>
+      <div class="honest-case-title">прямых бронирований</div>
+      <div class="honest-case-desc">Отель. Бот захватил входящий поток из мессенджеров и с сайта — гости получали ответ мгновенно вместо ожидания.</div>
+    </div>
+  </div>
+</section>
+
 <!-- PHASE 1 -->
 <section id="s-phase1">
   <div class="container">
@@ -622,7 +679,7 @@ details[open] summary::before { transform: rotate(90deg); }
           <span class="addon-badge">Опционально</span>
           <div class="p-price" style="font-size:24px;">200 000 ₽</div>
           <div class="p-price-sub">setup</div>
-          <div class="p-time" style="font-size:12px; color:var(--muted); margin-top:2px;">+ 13 ₽ / мин звонка</div>
+          <div class="p-time" style="font-size:12px; color:var(--muted); margin-top:2px;">+ $0.13 / мин звонка</div>
           <div class="p-time" style="font-size:12px; color:var(--muted);">+2 недели к 1А</div>
         </div>
       </div>
@@ -656,10 +713,10 @@ details[open] summary::before { transform: rotate(90deg); }
       </div>
       <div class="opex-result">
         <div class="opex-result-main">
-          <div class="opex-result-num" id="op_total">19 500</div>
-          <div class="opex-result-unit">₽ / мес</div>
+          <div class="opex-result-num" id="op_total">$195</div>
+          <div class="opex-result-unit">/ мес</div>
         </div>
-        <div class="opex-result-note" id="op_note">500 звонков × 3 мин × 13 ₽ = 19 500 ₽/мес — это стоимость обработки всего входящего потока</div>
+        <div class="opex-result-note" id="op_note">500 звонков × 3 мин × $0.13 = $195/мес — стоимость обработки всего входящего потока</div>
       </div>
     </div>
 
@@ -822,63 +879,6 @@ details[open] summary::before { transform: rotate(90deg); }
   </div>
 </section>
 
-<!-- HONEST IMPACT -->
-<section id="s-impact">
-  <div class="container">
-    <div class="s-label">Что меняется</div>
-    <h2 class="s-title">Каждое обращение доходит до оператора</h2>
-    <p class="s-sub">Бот захватывает каждое обращение и передаёт оператору тёплым. Оператор продаёт — бот следит, чтобы ни один диалог не пропал.</p>
-
-    <div class="honest-grid">
-      <div class="honest-col honest-col-before">
-        <div class="honest-col-label">Сейчас</div>
-        <div class="honest-item">Клиент написал → оператор занят → тишина → ушёл к конкуренту</div>
-        <div class="honest-item">История разбита по 5 каналам — оператор не видит контекст</div>
-        <div class="honest-item">Повторный покупатель не распознаётся, данные теряются</div>
-        <div class="honest-item">Обращение вечером или в выходной — никто не ответит</div>
-      </div>
-      <div class="honest-col honest-col-after">
-        <div class="honest-col-label">С единым центром</div>
-        <div class="honest-item">Каждое обращение получает ответ в течение 30 секунд</div>
-        <div class="honest-item">Оператор видит всю историю клиента из всех каналов сразу</div>
-        <div class="honest-item">Данные уходят в 1С при первом же контакте</div>
-        <div class="honest-item">Бот отвечает 24/7 — оператор подключается к нужным диалогам</div>
-      </div>
-    </div>
-
-    <div class="honest-slider-wrap no-print">
-      <div class="honest-slider-header">Сколько дополнительных диалогов получит оператор</div>
-      <div class="honest-slider-controls">
-        <div class="honest-slider-item">
-          <div class="honest-slider-label">
-            <span>Обращений в день</span>
-            <strong id="h_calls">20</strong>
-          </div>
-          <input type="range" class="roi-slider" id="h_calls_r" min="5" max="100" step="5" value="20" oninput="calcMissed()">
-        </div>
-        <div class="honest-slider-item">
-          <div class="honest-slider-label">
-            <span>Без ответа или с задержкой &gt; 15 мин</span>
-            <strong id="h_pct">30%</strong>
-          </div>
-          <input type="range" class="roi-slider" id="h_pct_r" min="10" max="70" step="5" value="30" oninput="calcMissed()">
-        </div>
-      </div>
-      <div class="honest-result">
-        <div class="honest-result-num" id="h_result">180</div>
-        <div class="honest-result-label">дополнительных диалогов в месяц начнут доходить до оператора</div>
-      </div>
-    </div>
-
-    <div class="honest-case">
-      <div class="honest-case-badge">Из нашей практики</div>
-      <div class="honest-case-stat">+42%</div>
-      <div class="honest-case-title">прямых бронирований</div>
-      <div class="honest-case-desc">Отель. Бот захватил входящий поток из мессенджеров и с сайта — гости получали ответ мгновенно вместо ожидания.</div>
-    </div>
-  </div>
-</section>
-
 <!-- CTA -->
 <div class="cta-section" id="s-cta">
   <div class="container">
@@ -904,13 +904,14 @@ function calcMissed() {
 function calcOpex() {
   const calls = parseFloat(document.getElementById('op_calls_r').value);
   const dur   = parseFloat(document.getElementById('op_dur_r').value);
-  const total = Math.round(calls * dur * 13);
+  const total = (calls * dur * 0.13).toFixed(2);
+  const totalDisp = '$' + parseFloat(total).toLocaleString('en', {minimumFractionDigits: 0, maximumFractionDigits: 2});
   document.getElementById('op_calls').textContent = calls.toLocaleString('ru');
   document.getElementById('op_dur').textContent   = dur + ' мин';
-  document.getElementById('op_total').textContent = total.toLocaleString('ru');
+  document.getElementById('op_total').textContent = totalDisp;
   document.getElementById('op_note').textContent  =
-    calls.toLocaleString('ru') + ' звонков × ' + dur + ' мин × 13 ₽ = ' +
-    total.toLocaleString('ru') + ' ₽/мес — стоимость обработки всего входящего потока';
+    calls.toLocaleString('ru') + ' звонков × ' + dur + ' мин × $0.13 = ' +
+    totalDisp + '/мес — стоимость обработки всего входящего потока';
 }
 
 /* ── TELEGRAM TRACKING — отключён ── */
