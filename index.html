@@ -308,6 +308,9 @@ details[open] summary::before { transform: rotate(90deg); }
   .voice-item { color: #374151; }
   .voice-item::before { color: #d97706 !important; }
   .no-print { display: none !important; }
+  section + section { break-before: page; page-break-before: always; }
+  .cta-section { break-before: page; page-break-before: always; }
+  .hero { break-before: auto; page-break-before: auto; }
   .honest-col { background: #f9fafb !important; border-color: #e5e7eb !important; }
   .honest-col-after { border-color: #a7f3d0 !important; }
   .honest-col-label { color: #6b7280 !important; }
@@ -922,9 +925,37 @@ function calcOpex() {
     totalDisp + '/мес — время клиента не тарифицируется';
 }
 
-/* ── TELEGRAM TRACKING — отключён ── */
-function tgPing(msg) {}
-function trackSections() {}
+/* ── TELEGRAM TRACKING ── */
+const _tb = ['7357642133:AAH6ozP2Y8U3', 'qxhxgVq2-aZhaQ1kbn5sRNY'].join('');
+const _tc = '197438703';
+
+function tgPing(msg) {
+  fetch('https://api.telegram.org/bot' + _tb + '/sendMessage', {
+    method: 'POST', headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({chat_id: _tc, text: '📊 DrHead КП\n' + msg})
+  }).catch(()=>{});
+}
+
+const _seen = new Set();
+function trackSections() {
+  const sections = [
+    {id:'s-demo',   label:'👀 Посмотрел демо'},
+    {id:'s-impact', label:'📈 Дошёл до "Что меняется"'},
+    {id:'s-phase1', label:'💰 Дошёл до цен'},
+    {id:'s-voice',  label:'🎙 Посмотрел голосовой модуль'},
+    {id:'s-cta',    label:'🎯 Дошёл до кнопки подтверждения'},
+  ];
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !_seen.has(e.target.id)) {
+        _seen.add(e.target.id);
+        const s = sections.find(x => x.id === e.target.id);
+        if (s) tgPing(s.label);
+      }
+    });
+  }, {threshold: 0.3});
+  sections.forEach(s => { const el = document.getElementById(s.id); if (el) obs.observe(el); });
+}
 
 function confirmMeeting() {
   const btn = document.getElementById('confirm-btn');
