@@ -846,39 +846,9 @@ function calcMissed() {
   document.getElementById('h_result').textContent = Math.round(calls * pct * 30);
 }
 
-/* ── TELEGRAM TRACKING ── */
-const _tb = ['7357642', '133:AAH6ozP2Y8U3qxhxgVq2-aZhaQ1kbn5sRNY'].join('');
-const _tc = '197438703';
-function tgPing(msg) {
-  fetch('https://api.telegram.org/bot' + _tb + '/sendMessage', {
-    method: 'POST', headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({chat_id: _tc, text: '📊 DrHead КП\n' + msg})
-  }).catch(()=>{});
-}
-
-const _seen = new Set();
-function trackSections() {
-  const sections = [
-    {id:'s-demo',    label:'👀 Посмотрел демо'},
-    {id:'s-phase1',  label:'💰 Дошёл до цен (Этап 1)'},
-    {id:'s-voice',   label:'🎙 Посмотрел голосовой агент'},
-    {id:'s-impact',  label:'📈 Дошёл до раздела "Что меняется"'},
-    {id:'s-cta',     label:'🎯 Дошёл до кнопки подтверждения'},
-  ];
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting && !_seen.has(e.target.id)) {
-        _seen.add(e.target.id);
-        const s = sections.find(x => x.id === e.target.id);
-        if (s) tgPing(s.label);
-      }
-    });
-  }, {threshold: 0.3});
-  sections.forEach(s => {
-    const el = document.getElementById(s.id);
-    if (el) obs.observe(el);
-  });
-}
+/* ── TELEGRAM TRACKING — отключён ── */
+function tgPing(msg) {}
+function trackSections() {}
 
 function confirmMeeting() {
   const btn = document.getElementById('confirm-btn');
