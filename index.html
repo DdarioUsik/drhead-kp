@@ -269,7 +269,7 @@ details[open] summary::before { transform: rotate(90deg); }
   .hero h1 em { color: #1d4ed8; }
   .hero-sub, .s-sub { color: #444; }
   .hero-eyebrow, .s-label, .meta-item .lbl { color: #888; }
-  section { padding: 14pt 0; border-bottom: 1px solid #e5e7eb; }
+  section { padding: 10pt 0; border-bottom: none; page-break-before: always; break-before: page; }
   .phase-card, .scope-card, .sup-card, .term-card, .prob-card { background: #f9fafb !important; border-color: #e5e7eb !important; page-break-inside: avoid; break-inside: avoid; }
   .phase-card.p1a { border-color: #bfdbfe !important; }
   .phase-card.p1b { border-color: #a7f3d0 !important; }
@@ -293,7 +293,8 @@ details[open] summary::before { transform: rotate(90deg); }
   .quote { background: #f9fafb; color: #374151; border-left-color: #3b82f6; }
   .quote cite { color: #888; }
   details { display: none; }
-  .demo-window, .demo-legend { display: none; }
+  .demo-window, .demo-legend, .voice-demo-block { display: none !important; }
+  .situation-section { page-break-before: auto !important; break-before: auto !important; }
   .kpi-callout { background: #f0fdf4 !important; border-color: #a7f3d0 !important; color: #374151; break-inside: avoid; page-break-inside: avoid; }
   .kpi-callout strong { color: #065f46 !important; }
   .rhythm-block { background: #f0fdf4 !important; border-color: #a7f3d0 !important; break-inside: avoid; page-break-inside: avoid; }
@@ -308,9 +309,6 @@ details[open] summary::before { transform: rotate(90deg); }
   .voice-item { color: #374151; }
   .voice-item::before { color: #d97706 !important; }
   .no-print { display: none !important; }
-  section + section { break-before: page; page-break-before: always; }
-  .cta-section { break-before: page; page-break-before: always; }
-  .hero { break-before: auto; page-break-before: auto; }
   .honest-col { background: #f9fafb !important; border-color: #e5e7eb !important; }
   .honest-col-after { border-color: #a7f3d0 !important; }
   .honest-col-label { color: #6b7280 !important; }
@@ -359,7 +357,7 @@ details[open] summary::before { transform: rotate(90deg); }
 </div>
 
 <!-- SITUATION -->
-<section>
+<section class="situation-section">
   <div class="container">
     <div class="s-label">Три встречи. Три проблемы.</div>
     <h2 class="s-title">Вот что мы увидели</h2>
@@ -460,7 +458,7 @@ details[open] summary::before { transform: rotate(90deg); }
     </div>
 
     <!-- VOICE DEMO -->
-    <div style="margin-top:32px; padding:24px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius);">
+    <div class="voice-demo-block" style="margin-top:32px; padding:24px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius);">
       <div style="font-size:11px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Голосовой агент — послушайте</div>
       <div style="font-size:15px; font-weight:600; color:var(--text); margin-bottom:20px;">Так звучит AI, который говорит вместо оператора</div>
       <div style="display:flex; flex-direction:column; gap:14px;">
