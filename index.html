@@ -458,6 +458,30 @@ details[open] summary::before { transform: rotate(90deg); }
       <div class="demo-legend-item"><div class="demo-dot" style="background:var(--green);"></div>Оператор видит всю историю клиента по всем каналам</div>
       <div class="demo-legend-item"><div class="demo-dot" style="background:rgba(255,255,255,0.2);"></div>Клиент не повторяет вопросы при смене канала</div>
     </div>
+
+    <!-- VOICE DEMO -->
+    <div style="margin-top:32px; padding:24px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius);">
+      <div style="font-size:11px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Голосовой агент — послушайте</div>
+      <div style="font-size:15px; font-weight:600; color:var(--text); margin-bottom:20px;">Так звучит AI, который говорит вместо оператора</div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="display:flex; align-items:center; gap:16px; padding:14px 18px; background:var(--surface); border-radius:10px; border:1px solid var(--border);">
+          <button onclick="toggleAudio('a1', this)" style="width:40px; height:40px; border-radius:50%; background:var(--blue); border:none; cursor:pointer; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px;">▶</button>
+          <div>
+            <div style="font-size:13px; font-weight:600; color:var(--text);">Квалификация по займу</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:2px;">Агент квалифицирует клиента, собирает данные, передаёт менеджеру</div>
+          </div>
+          <audio id="a1" src="audio/Loan-Qualification.mp3" preload="none"></audio>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px; padding:14px 18px; background:var(--surface); border-radius:10px; border:1px solid var(--border);">
+          <button onclick="toggleAudio('a2', this)" style="width:40px; height:40px; border-radius:50%; background:var(--blue); border:none; cursor:pointer; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px;">▶</button>
+          <div>
+            <div style="font-size:13px; font-weight:600; color:var(--text);">Работа с задолженностью</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:2px;">Агент ведёт сложный диалог, сохраняет тон и структуру</div>
+          </div>
+          <audio id="a2" src="audio/Debt-Collection.mp3" preload="none"></audio>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -974,6 +998,29 @@ function confirmMeeting() {
     btn.style.display = 'none';
     document.getElementById('confirm-done').style.display = 'block';
   }, 600);
+}
+
+/* ── AUDIO PLAYER ── */
+function toggleAudio(id, btn) {
+  const audio = document.getElementById(id);
+  ['a1','a2'].forEach(aid => {
+    if (aid !== id) {
+      const a = document.getElementById(aid);
+      if (!a.paused) { a.pause(); a.currentTime = 0; }
+      a.parentElement.querySelector('button').textContent = '▶';
+      a.parentElement.querySelector('button').style.background = 'var(--blue)';
+    }
+  });
+  if (audio.paused) {
+    audio.play();
+    btn.textContent = '⏸';
+    btn.style.background = 'var(--green)';
+    audio.onended = () => { btn.textContent = '▶'; btn.style.background = 'var(--blue)'; };
+  } else {
+    audio.pause();
+    btn.textContent = '▶';
+    btn.style.background = 'var(--blue)';
+  }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
