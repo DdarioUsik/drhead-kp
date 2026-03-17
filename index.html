@@ -457,29 +457,6 @@ details[open] summary::before { transform: rotate(90deg); }
       <div class="demo-legend-item"><div class="demo-dot" style="background:rgba(255,255,255,0.2);"></div>Клиент не повторяет вопросы при смене канала</div>
     </div>
 
-    <!-- VOICE DEMO -->
-    <div class="voice-demo-block" style="margin-top:32px; padding:24px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius);">
-      <div style="font-size:11px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Голосовой агент — послушайте</div>
-      <div style="font-size:15px; font-weight:600; color:var(--text); margin-bottom:20px;">Так звучит AI, который говорит вместо оператора</div>
-      <div style="display:flex; flex-direction:column; gap:14px;">
-        <div style="display:flex; align-items:center; gap:16px; padding:14px 18px; background:var(--surface); border-radius:10px; border:1px solid var(--border);">
-          <button onclick="toggleAudio('a1', this)" style="width:40px; height:40px; border-radius:50%; background:var(--blue); border:none; cursor:pointer; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px;">▶</button>
-          <div>
-            <div style="font-size:13px; font-weight:600; color:var(--text);">Квалификация по займу</div>
-            <div style="font-size:12px; color:var(--muted); margin-top:2px;">Агент квалифицирует клиента, собирает данные, передаёт менеджеру</div>
-          </div>
-          <audio id="a1" src="audio/Loan-Qualification.mp3" preload="none"></audio>
-        </div>
-        <div style="display:flex; align-items:center; gap:16px; padding:14px 18px; background:var(--surface); border-radius:10px; border:1px solid var(--border);">
-          <button onclick="toggleAudio('a2', this)" style="width:40px; height:40px; border-radius:50%; background:var(--blue); border:none; cursor:pointer; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px;">▶</button>
-          <div>
-            <div style="font-size:13px; font-weight:600; color:var(--text);">Работа с задолженностью</div>
-            <div style="font-size:12px; color:var(--muted); margin-top:2px;">Агент ведёт сложный диалог, сохраняет тон и структуру</div>
-          </div>
-          <audio id="a2" src="audio/Debt-Collection.mp3" preload="none"></audio>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -579,6 +556,7 @@ details[open] summary::before { transform: rotate(90deg); }
           <li>История клиента по всем каналам</li>
           <li>Передача на оператора с контекстом</li>
           <li>База знаний из каталога и сайта</li>
+          <li>Любой язык — русский, английский и другие</li>
           <li>Обучение команды (Алексей, Павел)</li>
         </ul>
         <div class="p-note">
@@ -695,9 +673,33 @@ details[open] summary::before { transform: rotate(90deg); }
             <div class="voice-item">Та же KB: наличие, цены, статусы заказов</div>
             <div class="voice-item">Транскрипт звонка в истории клиента</div>
             <div class="voice-item">Передача на оператора с контекстом разговора</div>
+            <div class="voice-item">Любой язык: русский, английский, казахский и другие — без доп. настройки</div>
           </div>
           <div class="addon-note" style="margin-top:12px;">
             <strong>Почему сейчас:</strong> инфраструктура центра обращений уже готова — голос надстраивается над ней. Запустить сразу с текстовым ботом автоматизирует весь входящий поток.
+          </div>
+
+          <!-- AUDIO DEMO -->
+          <div style="margin-top:18px;">
+            <div style="font-size:11px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">Послушайте — так звучит агент</div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div style="display:flex; align-items:center; gap:14px; padding:12px 16px; background:var(--bg); border-radius:10px; border:1px solid var(--border);">
+                <button onclick="toggleAudio('a1', this)" style="width:36px; height:36px; border-radius:50%; background:var(--blue); border:none; cursor:pointer; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px;">▶</button>
+                <div>
+                  <div style="font-size:13px; font-weight:600; color:var(--text);">Квалификация клиента</div>
+                  <div style="font-size:11px; color:var(--muted); margin-top:1px;">Агент собирает данные, передаёт менеджеру</div>
+                </div>
+                <audio id="a1" src="audio/Loan-Qualification.mp3" preload="none"></audio>
+              </div>
+              <div style="display:flex; align-items:center; gap:14px; padding:12px 16px; background:var(--bg); border-radius:10px; border:1px solid var(--border);">
+                <button onclick="toggleAudio('a2', this)" style="width:36px; height:36px; border-radius:50%; background:var(--blue); border:none; cursor:pointer; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px;">▶</button>
+                <div>
+                  <div style="font-size:13px; font-weight:600; color:var(--text);">Сложный диалог</div>
+                  <div style="font-size:11px; color:var(--muted); margin-top:1px;">Агент держит тон и структуру в нестандартной ситуации</div>
+                </div>
+                <audio id="a2" src="audio/Debt-Collection.mp3" preload="none"></audio>
+              </div>
+            </div>
           </div>
         </div>
         <div class="voice-price-block">
