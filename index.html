@@ -217,6 +217,18 @@ details[open] summary::before { transform: rotate(90deg); }
 .honest-case-title { font-size: 17px; font-weight: 700; color: var(--text); align-self: end; }
 .honest-case-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
 
+/* OPEX CALCULATOR */
+.opex-card { background: var(--card); border: 1px solid rgba(245,158,11,0.2); border-radius: var(--radius); padding: 24px 26px; margin-top: 20px; }
+.opex-sliders { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 22px; }
+.opex-slider-item {}
+.opex-slider-label { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px; font-size: 12.5px; color: var(--subtle); }
+.opex-slider-label strong { font-size: 14px; color: var(--amber); font-weight: 700; }
+.opex-result { display: flex; align-items: center; gap: 20px; padding-top: 20px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.opex-result-main { display: flex; align-items: baseline; gap: 8px; }
+.opex-result-num { font-size: 42px; font-weight: 800; color: var(--amber); letter-spacing: -0.02em; }
+.opex-result-unit { font-size: 15px; color: var(--subtle); }
+.opex-result-note { font-size: 12.5px; color: var(--muted); line-height: 1.55; flex: 1; min-width: 180px; }
+
 /* CTA */
 .cta-section { text-align: center; padding: 52px 0 60px; }
 .cta-section h2 { font-size: 24px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.01em; }
@@ -618,6 +630,48 @@ details[open] summary::before { transform: rotate(90deg); }
   </div>
 </section>
 
+<!-- OPEX CALCULATOR -->
+<section>
+  <div class="container">
+    <div class="s-label">Операционные расходы</div>
+    <h2 class="s-title">Сколько стоит работа голосового агента</h2>
+    <p class="s-sub">Вы платите только за реальные минуты разговора — напрямую провайдеру, не нам. Двигайте слайдеры под свои объёмы.</p>
+
+    <div class="opex-card no-print">
+      <div class="opex-sliders">
+        <div class="opex-slider-item">
+          <div class="opex-slider-label">
+            <span>Звонков в месяц</span>
+            <strong id="op_calls">500</strong>
+          </div>
+          <input type="range" class="roi-slider" id="op_calls_r" min="100" max="3000" step="100" value="500" oninput="calcOpex()">
+        </div>
+        <div class="opex-slider-item">
+          <div class="opex-slider-label">
+            <span>Средняя длительность звонка</span>
+            <strong id="op_dur">3 мин</strong>
+          </div>
+          <input type="range" class="roi-slider" id="op_dur_r" min="1" max="10" step="0.5" value="3" oninput="calcOpex()">
+        </div>
+      </div>
+      <div class="opex-result">
+        <div class="opex-result-main">
+          <div class="opex-result-num" id="op_total">19 500</div>
+          <div class="opex-result-unit">₽ / мес</div>
+        </div>
+        <div class="opex-result-note" id="op_note">500 звонков × 3 мин × 13 ₽ = 19 500 ₽/мес — это стоимость обработки всего входящего потока</div>
+      </div>
+    </div>
+
+    <div class="honest-case" style="margin-top:16px;">
+      <div class="honest-case-badge">Для сравнения</div>
+      <div class="honest-case-stat" style="font-size:38px;">0 ₽</div>
+      <div class="honest-case-title">стоит текстовый бот сверх поддержки</div>
+      <div class="honest-case-desc">Единый центр обращений (Этап 1) работает на фиксированной инфраструктуре ~20 000 ₽/мес — не зависит от числа диалогов.</div>
+    </div>
+  </div>
+</section>
+
 <!-- ROADMAP -->
 <section>
   <div class="container">
@@ -846,6 +900,19 @@ function calcMissed() {
   document.getElementById('h_result').textContent = Math.round(calls * pct * 30);
 }
 
+/* ── OPEX CALCULATOR ── */
+function calcOpex() {
+  const calls = parseFloat(document.getElementById('op_calls_r').value);
+  const dur   = parseFloat(document.getElementById('op_dur_r').value);
+  const total = Math.round(calls * dur * 13);
+  document.getElementById('op_calls').textContent = calls.toLocaleString('ru');
+  document.getElementById('op_dur').textContent   = dur + ' мин';
+  document.getElementById('op_total').textContent = total.toLocaleString('ru');
+  document.getElementById('op_note').textContent  =
+    calls.toLocaleString('ru') + ' звонков × ' + dur + ' мин × 13 ₽ = ' +
+    total.toLocaleString('ru') + ' ₽/мес — стоимость обработки всего входящего потока';
+}
+
 /* ── TELEGRAM TRACKING — отключён ── */
 function tgPing(msg) {}
 function trackSections() {}
@@ -863,6 +930,7 @@ function confirmMeeting() {
 
 window.addEventListener('DOMContentLoaded', () => {
   calcMissed();
+  calcOpex();
   tgPing('📄 Открыл КП');
   trackSections();
 });
